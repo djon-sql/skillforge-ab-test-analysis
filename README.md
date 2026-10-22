@@ -2,9 +2,9 @@
 
 Чи підвищує перехід одразу до інтерактивного уроку конверсію в преміум-підписку? Аналіз навчального експерименту за **01–20 серпня 2025 року**: перевірка даних, PostgreSQL, статистичний тест, сегменти та Tableau.
 
-**Вебзвіти:** [1. Очищення даних](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html) · [2. SQL: таблиці та view](https://djon-sql.github.io/skillforge-ab-test-analysis/#sql) · [3. A/B-аналіз](https://djon-sql.github.io/skillforge-ab-test-analysis/) · [Tableau Public](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
+**Вебзвіти:** [1. Очищення даних](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/eda.html) · [2. SQL: таблиці та view](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#sql) · [3. A/B-аналіз](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/) · [Tableau Public](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
 
-**Ноутбуки:** [Очищення даних](materials/notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb) · [A/B-аналіз](materials/notebooks/SkillForge_Kupriyanov_ab_test_analysis.ipynb)
+**Ноутбуки:** [Очищення даних](notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb) · [A/B-аналіз](notebooks/SkillForge_Kupriyanov_ab_test_analysis.ipynb)
 
 **Інструменти:** Python · Pandas · Matplotlib · Statsmodels · PostgreSQL · Tableau
 
@@ -38,7 +38,7 @@ SkillForge — навчальна платформа. Перевіряється
 | Невідомий підсумковий статус | 144 | 86 |
 | Конверсія серед відомих статусів | **43,13%** | **64,73%** |
 
-![Конверсія в преміум-підписку серед користувачів із відомим статусом: A — 43,13%, B — 64,73%](materials/assets/01_conversion.png)
+![Конверсія в преміум-підписку серед користувачів із відомим статусом: A — 43,13%, B — 64,73%](assets/01_conversion.png)
 
 | Перевірка | Результат |
 |---|---:|
@@ -50,7 +50,7 @@ SkillForge — навчальна платформа. Перевіряється
 
 Основна конверсія розрахована для **9 716 користувачів із визначеною групою та відомим статусом**. У крайніх сценаріях використано всіх 9 946 учасників із визначеною групою; це інший знаменник. Навіть за найгіршого для B розподілу невідомих статусів його перевага зберігається.
 
-[Детальні розрахунки →](https://djon-sql.github.io/skillforge-ab-test-analysis/#conversion)
+[Детальні розрахунки →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#conversion)
 
 <a id="methodology"></a>
 ## 3. Дані та методика
@@ -73,7 +73,7 @@ SkillForge — навчальна платформа. Перевіряється
 
 Довідники не містили пропусків і дублікатів, а заповнені зовнішні ID відповідали довідникам. ID-поля та `converted` приведено до цілочисельних типів із підтримкою пропусків, `date` — до формату дати.
 
-[Код і результати очищення у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html#data-quality) · [Ноутбук очищення](materials/notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb)
+[Код і результати очищення у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/eda.html#data-quality) · [Ноутбук очищення](notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb)
 
 <a id="sql"></a>
 ### 3.2. PostgreSQL: таблиці та аналітичні view
@@ -87,7 +87,7 @@ SkillForge — навчальна платформа. Перевіряється
 
 Повний авторський SQL, включно зі створенням таблиць та обох view, додано окремим розділом у вебзвіт.
 
-[Переглянути SQL у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/#sql) · [Авторський SQL-файл](materials/sql/01_schema_and_views.sql)
+[Переглянути SQL у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#sql) · [Авторський SQL-файл](sql/01_schema_and_views.sql)
 
 ### 3.3. Визначення метрики
 
@@ -103,7 +103,7 @@ SkillForge — навчальна платформа. Перевіряється
 
 Перевірено односторонню гіпотезу **H₁: CR(B) > CR(A)** при α = 0,05. Окремо побудовано двосторонній 95% довірчий інтервал різниці та крайні сценарії для пропусків.
 
-[Перевірки та очищення даних →](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html#data-quality) · [SQL у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/#sql)
+[Перевірки та очищення даних →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/eda.html#data-quality) · [SQL у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#sql)
 
 <a id="segments"></a>
 ## 4. Сегменти: пристрої та країни
@@ -120,18 +120,18 @@ SkillForge — навчальна платформа. Перевіряється
 
 **Це описові порівняння.** Відмінності приросту між країнами та пристроями окремо статистично не перевірялися. Для Smartwatch, TV та коду країни `XX` вибірки малі: ці категорії не дозволяють упевнено стверджувати ні наявність, ні відсутність ефекту. Зв’язок сегмента з конверсією не доводить його причинного впливу.
 
-[Сегментний аналіз →](https://djon-sql.github.io/skillforge-ab-test-analysis/#segments) · [Інтерактивні зрізи в Tableau →](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
+[Сегментний аналіз →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#segments) · [Інтерактивні зрізи в Tableau →](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
 
 <a id="weekly-trends"></a>
 ## 5. Тижневі закономірності
 
 У перших двох періодах середня щоденна кількість користувачів із записами відносно стабільна; у третьому — нижча в обох групах. A і B мають схожий характер щоденних коливань: **найнижчі значення припадають на неділі, найвищі — на четверги**.
 
-![Середня щоденна кількість користувачів із записами за три періоди експерименту, окремо A і B](materials/assets/02_weekly_usage.png)
+![Середня щоденна кількість користувачів із записами за три періоди експерименту, окремо A і B](assets/02_weekly_usage.png)
 
 Періоди містять **7, 7 і 6 днів**. У третьому періоді немає четверга, тому склад днів тижня може частково пояснювати нижче середнє. Статистичну рівність трендів не перевіряли. Показник характеризує користувачів із записами `daily`, а не незалежно виміряну залученість чи конверсію.
 
-[Щоденні коливання та пояснення →](https://djon-sql.github.io/skillforge-ab-test-analysis/#weekly-trends)
+[Щоденні коливання та пояснення →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#weekly-trends)
 
 <a id="recommendations"></a>
 ## 6. Висновок для бізнесу
@@ -146,7 +146,7 @@ SkillForge — навчальна платформа. Перевіряється
 
 Утримання, скасування та дохід у цьому проєкті **не розраховані** — це показники для контролю наступного запуску. Дані не дають підстав перетворювати приріст конверсії на прогноз доходу.
 
-[Повні висновки та рекомендації →](https://djon-sql.github.io/skillforge-ab-test-analysis/#conclusions)
+[Повні висновки та рекомендації →](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#conclusions)
 
 <a id="limitations"></a>
 ## 7. Обмеження
@@ -160,20 +160,20 @@ SkillForge — навчальна платформа. Перевіряється
 <a id="files"></a>
 ## 8. Матеріали проєкту
 
-Ноутбуки, SQL-код та зображення зібрані в папці [materials](materials/).
+Ноутбуки, SQL-код та зображення зібрані в папці [materials]().
 
 | Матеріал | Що можна переглянути |
 |---|---|
-| [Очищення даних — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html) | HTML-версія першого ноутбука: перевірки якості, очищення, код та збережені результати. Зміст і перехід до A/B-аналізу |
-| [A/B-аналіз — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/) | HTML-версія другого ноутбука: розрахунки, таблиці, графіки та висновки. Зміст і перехід до очищення даних |
-| [Ноутбук очищення](materials/notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb) | Авторський Python-код та збережені узагальнені результати підготовки даних |
-| [Ноутбук A/B-аналізу](materials/notebooks/SkillForge_Kupriyanov_ab_test_analysis.ipynb) | Авторські розрахунки, графіки й узагальнені результати |
-| [SQL — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/#sql) | Повний код створення таблиць і view з навігацією. [Авторський SQL-файл](materials/sql/01_schema_and_views.sql) |
+| [Очищення даних — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/eda.html) | HTML-версія першого ноутбука: перевірки якості, очищення, код та збережені результати. Зміст і перехід до A/B-аналізу |
+| [A/B-аналіз — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/) | HTML-версія другого ноутбука: розрахунки, таблиці, графіки та висновки. Зміст і перехід до очищення даних |
+| [Ноутбук очищення](notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb) | Авторський Python-код та збережені узагальнені результати підготовки даних |
+| [Ноутбук A/B-аналізу](notebooks/SkillForge_Kupriyanov_ab_test_analysis.ipynb) | Авторські розрахунки, графіки й узагальнені результати |
+| [SQL — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/docs/#sql) | Повний код створення таблиць і view з навігацією. [Авторський SQL-файл](sql/01_schema_and_views.sql) |
 | [Tableau Public](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-) | Два інтерактивні дашборди |
 
 Вихідні користувацькі записи не включені до репозиторію. Для перегляду доступні код, графіки та збережені узагальнені результати; повний повторний запуск потребує вихідного навчального набору.
 
-[![Головний дашборд Tableau: конверсія, приріст і динаміка](materials/assets/04_tableau_overview.png)](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
+[![Головний дашборд Tableau: конверсія, приріст і динаміка](assets/04_tableau_overview.png)](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
 
 [Повернутися до навігації ↑](#navigation)
 
