@@ -1,4 +1,6 @@
-<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="SkillForge — дослідження та очищення даних ¶. HTML-версія авторського ноутбука зі змістом та переходами між етапами."><title>SkillForge — дослідження та очищення даних ¶ · Дмитро Купріянов</title><style>pre { line-height: 125%; }
+<!DOCTYPE html>
+
+<html lang="uk"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="SkillForge — дослідження та очищення даних ¶. HTML-версія авторського ноутбука зі змістом та переходами між етапами." name="description"/><title>SkillForge — дослідження та очищення даних ¶ · Дмитро Купріянов</title><style>pre { line-height: 125%; }
 td.linenos .normal { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -90,7 +92,23 @@ h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size
 @media(max-width:650px){.toolbar-inner{padding:8px 14px;gap:6px 12px}.report-switch,.report-tools{gap:5px 9px}main{padding:0 14px;margin-top:14px}h1{font-size:23px}h2{font-size:19px}h3{font-size:16px}.toc-grid{grid-template-columns:1fr}.report-toc{padding:9px 10px}.toc-group{padding:6px 8px}.toc-main{font-size:12px}.highlight pre,.output_text pre{font-size:11px}th,td{padding:5px 7px}.text_cell_render{overflow-x:auto}}
 @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#15191e;--text:#e0e6ec;--muted:#a6b2bf;--line:#39434e;--panel:#20262d;--link:#79bed8;--code:#1d232a}.report-switch a[aria-current=page],.report-tools button{background:#205b70;color:#fff}.highlight,.highlight *{color:var(--text)!important}.highlight .c,.highlight .c1{color:#a6b2bf!important}.highlight .k,.highlight .kn{color:#94c9eb!important}.highlight .s,.highlight .s1,.highlight .s2{color:#b4d8ad!important}}
 @media print{.toolbar,.back-to-contents,.report-footer,.report-toc{display:none}main{max-width:none;padding:0}body{font-size:11px}.code_cell{break-inside:avoid}}
-</style></head><body><a class="skip-link" href="#notebook">Перейти до аналізу</a><header class="toolbar"><nav class="toolbar-inner" aria-label="Навігація між звітами"><div class="report-switch"><a href="eda.html" aria-current="page">1. Очищення даних</a><a href="index.html">2. A/B-аналіз</a></div><div class="report-tools"><a href="#report-contents">Зміст</a><button type="button" id="code-toggle" aria-pressed="false" hidden>Показати код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/SkillForge_Kupriyanov_eda_cleaning.ipynb">Ноутбук ↗</a></div></nav></header><main id="notebook"><div class="cell border-box-sizing text_cell rendered" id="cell-id=969448e9"><div class="inner_cell">
+</style><style>
+[id]{scroll-margin-top:18px}
+main{margin-top:24px}
+.project-navigation{margin:17px auto 14px;padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--panel);text-align:center;position:static}
+.project-navigation h2{font-size:13px;line-height:1.4;margin:0 0 9px;letter-spacing:0;font-weight:600;color:var(--muted)}
+.project-links,.panel-tools{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px}
+.project-links a,.panel-tools a,.panel-tools button{display:inline-block;border:1px solid var(--line);border-radius:5px;padding:6px 10px;text-decoration:none;background:var(--bg);color:var(--link);font:600 12px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer}
+.project-links a[aria-current=page],.panel-tools button{background:#205b70;border-color:#205b70;color:#fff}
+.panel-tools{margin-top:8px;gap:6px}.panel-tools a,.panel-tools button{padding:4px 8px;font-size:11px}.project-links a:hover,.panel-tools a:hover{text-decoration:underline}
+.report-toc{margin-top:12px}.back-to-contents{display:flex;gap:10px;flex-wrap:wrap}
+.sql-section{border-top:1px solid var(--line);margin-top:26px;padding-top:6px}.sql-section h2{margin-top:19px}
+.sql-shortcuts{display:flex;gap:8px 16px;flex-wrap:wrap;font-size:12px;margin:12px 0 17px}
+.sql-code{max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:5px;background:var(--code);margin:9px 0 20px}.sql-code .highlight{padding:10px 12px}.sql-code pre{margin:0;white-space:pre;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}
+.report-footer a{font-size:12px}
+@media(max-width:650px){main{margin-top:16px}.project-navigation{padding:10px 8px}.project-links{gap:6px}.project-links a{padding:6px 8px;font-size:11px}.panel-tools a,.panel-tools button{font-size:10px}.sql-code pre{font-size:11px}}
+@media print{.project-navigation,.sql-shortcuts{display:none}}
+</style></head><body data-report="eda"><a class="skip-link" href="#notebook">Перейти до аналізу</a><main id="notebook"><div class="cell border-box-sizing text_cell rendered" id="cell-id=969448e9"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="SkillForge-%E2%80%94-%D0%B4%D0%BE%D1%81%D0%BB%D1%96%D0%B4%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B0-%D0%BE%D1%87%D0%B8%D1%89%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85">SkillForge — дослідження та очищення даних<a class="anchor-link" href="#SkillForge-%E2%80%94-%D0%B4%D0%BE%D1%81%D0%BB%D1%96%D0%B4%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B0-%D0%BE%D1%87%D0%B8%D1%89%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85">¶</a></h1><p><strong>Автор:</strong> Дмитро Купріянов<br/>
 <strong>Період експерименту:</strong> 01–20 серпня 2025 року</p>
@@ -104,9 +122,9 @@ h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size
 </div>
 </div>
 </div>
-<nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#context">Опис проєкту</a></div><div class="toc-group"><a class="toc-main" href="#load-data">1. Завантаження даних</a></div><div class="toc-group"><a class="toc-main" href="#initial-review">2. Первинний огляд даних</a></div><div class="toc-group"><a class="toc-main" href="#data-quality">3. Перевірка якості та очищення даних</a><details><summary>Підрозділи (7)</summary><ul><li><a href="#section-3-1">3.1. Перевірка довідників</a></li><li><a href="#section-3-2">3.2. Якість даних користувачів</a></li><li><a href="#section-3-3">3.3. Якість щоденних записів</a></li><li><a href="#section-3-4">3.4. Перевірка зв’язків між таблицями</a></li><li><a href="#section-3-5">3.5. Очищення даних</a></li><li><a href="#section-3-6">3.6. Невідомі статуси конверсії</a></li><li><a href="#section-3-7">3.7. Приведення типів даних</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#export">4. Підсумкова перевірка та експорт</a><details><summary>Підрозділи (2)</summary><ul><li><a href="#cleaning-summary">Підсумок очищення</a></li><li><a href="#section-4-1">4.1. Експорт очищених таблиць</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-overview"><div class="inner_cell">
+<nav aria-labelledby="project-navigation-title" class="project-navigation" id="project-navigation"><h2 id="project-navigation-title">Навігація проєктом</h2><div class="project-links"><a aria-current="page" data-stage="eda" href="eda.html">1. Очищення даних</a><a data-stage="sql" href="index.html#sql">2. SQL: таблиці та view</a><a data-stage="ab" href="index.html">3. A/B-аналіз</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a></div><div class="panel-tools"><a href="#report-contents">Зміст цього звіту</a><button aria-pressed="false" hidden="" id="code-toggle" type="button">Показати Python-код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/SkillForge_Kupriyanov_eda_cleaning.ipynb">Ноутбук на GitHub ↗</a></div></nav><nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#context">Опис проєкту</a></div><div class="toc-group"><a class="toc-main" href="#load-data">1. Завантаження даних</a></div><div class="toc-group"><a class="toc-main" href="#initial-review">2. Первинний огляд даних</a></div><div class="toc-group"><a class="toc-main" href="#data-quality">3. Перевірка якості та очищення даних</a><details><summary>Підрозділи (7)</summary><ul><li><a href="#section-3-1">3.1. Перевірка довідників</a></li><li><a href="#section-3-2">3.2. Якість даних користувачів</a></li><li><a href="#section-3-3">3.3. Якість щоденних записів</a></li><li><a href="#section-3-4">3.4. Перевірка зв’язків між таблицями</a></li><li><a href="#section-3-5">3.5. Очищення даних</a></li><li><a href="#section-3-6">3.6. Невідомі статуси конверсії</a></li><li><a href="#section-3-7">3.7. Приведення типів даних</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#export">4. Підсумкова перевірка та експорт</a><details><summary>Підрозділи (2)</summary><ul><li><a href="#cleaning-summary">Підсумок очищення</a></li><li><a href="#section-4-1">4.1. Експорт очищених таблиць</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-overview"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="context">Опис проєкту</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Мета проєкту — проаналізувати результати A/B тесту нової функції
+<h2 id="context">Опис проєкту</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Мета проєкту — проаналізувати результати A/B тесту нової функції
 "Миттєве занурення" у SkillForge та перевірити, чи підвищує вона
 конверсію в преміум-підписку.</p>
 </div>
@@ -114,7 +132,7 @@ h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="load-data">1. Завантаження даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Завантажимо таблиці з Excel-файлу та перевіримо їхню структуру.</p>
+<h2 id="load-data">1. Завантаження даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Завантажимо таблиці з Excel-файлу та перевіримо їхню структуру.</p>
 </div>
 </div>
 </div>
@@ -165,7 +183,7 @@ h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="initial-review">2. Первинний огляд даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Проведемо первинний огляд таблиць: кількість рядків і колонок, приклади записів та типи даних.</p>
+<h2 id="initial-review">2. Первинний огляд даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Проведемо первинний огляд таблиць: кількість рядків і колонок, приклади записів та типи даних.</p>
 </div>
 </div>
 </div>
@@ -498,14 +516,14 @@ memory usage: 164.0+ bytes
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="data-quality">3. Перевірка якості та очищення даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Перевіримо дані на пропуски, дублікати, некоректні типи,аномальні значення та порушення цілісності, після чого
+<h2 id="data-quality">3. Перевірка якості та очищення даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Перевіримо дані на пропуски, дублікати, некоректні типи,аномальні значення та порушення цілісності, після чого
 виконаємо необхідне очищення.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-1">3.1. Перевірка довідників</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-1">3.1. Перевірка довідників</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -621,7 +639,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-2">3.2. Якість даних користувачів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-2">3.2. Якість даних користувачів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -966,7 +984,7 @@ Name: count, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-3">3.3. Якість щоденних записів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-3">3.3. Якість щоденних записів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1173,7 +1191,7 @@ Name: count, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-4"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-4">3.4. Перевірка зв’язків між таблицями</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-4">3.4. Перевірка зв’язків між таблицями</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1267,7 +1285,7 @@ Name: count, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-5"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-5">3.5. Очищення даних</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-5">3.5. Очищення даних</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1385,7 +1403,7 @@ Name: count, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-6"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-6">3.6. Невідомі статуси конверсії</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-6">3.6. Невідомі статуси конверсії</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1584,7 +1602,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-7"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-3-7">3.7. Приведення типів даних</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-3-7">3.7. Приведення типів даних</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1639,7 +1657,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-4"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="export">4. Підсумкова перевірка та експорт</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h2 id="export">4. Підсумкова перевірка та експорт</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1686,7 +1704,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=1e0ba6cd-829d-4166-bab2-82ffe11db6ea"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="cleaning-summary">Підсумок очищення</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><table>
+<h3 id="cleaning-summary">Підсумок очищення</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><table>
 <thead>
 <tr>
 <th>Дані / проблема</th>
@@ -1728,7 +1746,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-4-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-4-1">4.1. Експорт очищених таблиць</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-4-1">4.1. Експорт очищених таблиць</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1763,11 +1781,10 @@ Name: count, dtype: int64</pre>
 </div>
 </div>
 </div>
-<footer class="report-footer"><a href="index.html">Далі: A/B-аналіз →</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
-const bar=document.querySelector('.toolbar');
-const resize=()=>document.documentElement.style.setProperty('--toolbar-h',bar.getBoundingClientRect().height+'px');
-resize();if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(bar);else addEventListener('resize',resize);
+<footer class="report-footer"><a href="index.html">Далі: A/B-аналіз →</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a><a href="#project-navigation">До панелі навігації ↑</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
 const button=document.getElementById('code-toggle');
 document.body.classList.add('code-hidden');button.hidden=false;
-button.addEventListener('click',()=>{const hidden=document.body.classList.toggle('code-hidden');button.textContent=hidden?'Показати код':'Приховати код';button.setAttribute('aria-pressed',String(!hidden));});
+button.addEventListener('click',()=>{const hidden=document.body.classList.toggle('code-hidden');button.textContent=hidden?'Показати Python-код':'Приховати Python-код';button.setAttribute('aria-pressed',String(!hidden));});
+const updateActive=()=>{const report=document.body.dataset.report;const active=report==='ab'&&location.hash.startsWith('#sql')?'sql':report;document.querySelectorAll('.project-links a[data-stage]').forEach(a=>{if(a.dataset.stage===active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});};
+updateActive();addEventListener('hashchange',updateActive);
 }());</script></body></html>

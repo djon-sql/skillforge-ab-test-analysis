@@ -1,4 +1,6 @@
-<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="SkillForge — результати A/B-тесту нового онбордингу ¶. HTML-версія авторського ноутбука зі змістом та переходами між етапами."><title>SkillForge — результати A/B-тесту нового онбордингу ¶ · Дмитро Купріянов</title><style>pre { line-height: 125%; }
+<!DOCTYPE html>
+
+<html lang="uk"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="SkillForge — результати A/B-тесту нового онбордингу ¶. HTML-версія авторського ноутбука зі змістом та переходами між етапами." name="description"/><title>SkillForge — результати A/B-тесту нового онбордингу ¶ · Дмитро Купріянов</title><style>pre { line-height: 125%; }
 td.linenos .normal { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -90,7 +92,23 @@ h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size
 @media(max-width:650px){.toolbar-inner{padding:8px 14px;gap:6px 12px}.report-switch,.report-tools{gap:5px 9px}main{padding:0 14px;margin-top:14px}h1{font-size:23px}h2{font-size:19px}h3{font-size:16px}.toc-grid{grid-template-columns:1fr}.report-toc{padding:9px 10px}.toc-group{padding:6px 8px}.toc-main{font-size:12px}.highlight pre,.output_text pre{font-size:11px}th,td{padding:5px 7px}.text_cell_render{overflow-x:auto}}
 @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#15191e;--text:#e0e6ec;--muted:#a6b2bf;--line:#39434e;--panel:#20262d;--link:#79bed8;--code:#1d232a}.report-switch a[aria-current=page],.report-tools button{background:#205b70;color:#fff}.highlight,.highlight *{color:var(--text)!important}.highlight .c,.highlight .c1{color:#a6b2bf!important}.highlight .k,.highlight .kn{color:#94c9eb!important}.highlight .s,.highlight .s1,.highlight .s2{color:#b4d8ad!important}}
 @media print{.toolbar,.back-to-contents,.report-footer,.report-toc{display:none}main{max-width:none;padding:0}body{font-size:11px}.code_cell{break-inside:avoid}}
-</style></head><body><a class="skip-link" href="#notebook">Перейти до аналізу</a><header class="toolbar"><nav class="toolbar-inner" aria-label="Навігація між звітами"><div class="report-switch"><a href="eda.html">1. Очищення даних</a><a href="index.html" aria-current="page">2. A/B-аналіз</a></div><div class="report-tools"><a href="#report-contents">Зміст</a><button type="button" id="code-toggle" aria-pressed="false" hidden>Показати код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/SkillForge_Kupriyanov_ab_test_analysis.ipynb">Ноутбук ↗</a></div></nav></header><main id="notebook"><div class="cell border-box-sizing text_cell rendered" id="cell-id=2ec47da9"><div class="inner_cell">
+</style><style>
+[id]{scroll-margin-top:18px}
+main{margin-top:24px}
+.project-navigation{margin:17px auto 14px;padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--panel);text-align:center;position:static}
+.project-navigation h2{font-size:13px;line-height:1.4;margin:0 0 9px;letter-spacing:0;font-weight:600;color:var(--muted)}
+.project-links,.panel-tools{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px}
+.project-links a,.panel-tools a,.panel-tools button{display:inline-block;border:1px solid var(--line);border-radius:5px;padding:6px 10px;text-decoration:none;background:var(--bg);color:var(--link);font:600 12px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer}
+.project-links a[aria-current=page],.panel-tools button{background:#205b70;border-color:#205b70;color:#fff}
+.panel-tools{margin-top:8px;gap:6px}.panel-tools a,.panel-tools button{padding:4px 8px;font-size:11px}.project-links a:hover,.panel-tools a:hover{text-decoration:underline}
+.report-toc{margin-top:12px}.back-to-contents{display:flex;gap:10px;flex-wrap:wrap}
+.sql-section{border-top:1px solid var(--line);margin-top:26px;padding-top:6px}.sql-section h2{margin-top:19px}
+.sql-shortcuts{display:flex;gap:8px 16px;flex-wrap:wrap;font-size:12px;margin:12px 0 17px}
+.sql-code{max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:5px;background:var(--code);margin:9px 0 20px}.sql-code .highlight{padding:10px 12px}.sql-code pre{margin:0;white-space:pre;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}
+.report-footer a{font-size:12px}
+@media(max-width:650px){main{margin-top:16px}.project-navigation{padding:10px 8px}.project-links{gap:6px}.project-links a{padding:6px 8px;font-size:11px}.panel-tools a,.panel-tools button{font-size:10px}.sql-code pre{font-size:11px}}
+@media print{.project-navigation,.sql-shortcuts{display:none}}
+</style></head><body data-report="ab"><a class="skip-link" href="#notebook">Перейти до аналізу</a><main id="notebook"><div class="cell border-box-sizing text_cell rendered" id="cell-id=2ec47da9"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="SkillForge-%E2%80%94-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B8-A/B-%D1%82%D0%B5%D1%81%D1%82%D1%83-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-%D0%BE%D0%BD%D0%B1%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B3%D1%83">SkillForge — результати A/B-тесту нового онбордингу<a class="anchor-link" href="#SkillForge-%E2%80%94-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%B8-A/B-%D1%82%D0%B5%D1%81%D1%82%D1%83-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-%D0%BE%D0%BD%D0%B1%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B3%D1%83">¶</a></h1><p><strong>Автор:</strong> Дмитро Купріянов<br/>
 <strong>Період експерименту:</strong> 01–20 серпня 2025 року</p>
@@ -104,9 +122,9 @@ h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size
 </div>
 </div>
 </div>
-<nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#database">1. Підключення до бази даних</a></div><div class="toc-group"><a class="toc-main" href="#experiment">2. Опис експерименту та гіпотези</a></div><div class="toc-group"><a class="toc-main" href="#sample">3. Огляд вибірки</a></div><div class="toc-group"><a class="toc-main" href="#conversion">4. Конверсія та приріст</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-4-1">4.1. Конверсія за групами</a></li><li><a href="#section-4-2">4.2. Абсолютний та відносний приріст</a></li><li><a href="#section-4-3">4.3. Графік конверсії</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#significance">5. Статистична значущість</a></div><div class="toc-group"><a class="toc-main" href="#confidence-interval">6. Довірчий інтервал 95%</a></div><div class="toc-group"><a class="toc-main" href="#sensitivity">7. Аналіз чутливості</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-7-1">7.1. Найгірший сценарій для групи B</a></li><li><a href="#section-7-2">7.2. Найкращий сценарій для групи B</a></li><li><a href="#section-7-3">7.3. Порівняння сценаріїв</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#segments">8. Аналіз сегментів</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-8-1">8.1. Конверсія за пристроями</a></li><li><a href="#section-8-2">8.2. Конверсія за країнами</a></li><li><a href="#section-8-3">8.3. Висновки сегментного аналізу</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#weekly-trends">9. Тижневі тренди</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-9-1">9.1. Порівняння періодів експерименту</a></li><li><a href="#section-9-2">9.2. Щоденні коливання</a></li><li><a href="#section-9-3">9.3. Висновки щодо трендів</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#conclusions">10. Висновки та бізнес-рекомендації</a><details><summary>Підрозділи (5)</summary><ul><li><a href="#section-10-1">10.1. Основні результати A/B-тесту</a></li><li><a href="#section-10-2">10.2. Практична значущість</a></li><li><a href="#methodology-notes">10.3. Додаткові результати та обмеження</a></li><li><a href="#recommendations">10.4. Бізнес-рекомендації</a></li><li><a href="#section-10-5">10.5. Загальний висновок</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-1"><div class="inner_cell">
+<nav aria-labelledby="project-navigation-title" class="project-navigation" id="project-navigation"><h2 id="project-navigation-title">Навігація проєктом</h2><div class="project-links"><a data-stage="eda" href="eda.html">1. Очищення даних</a><a data-stage="sql" href="index.html#sql">2. SQL: таблиці та view</a><a aria-current="page" data-stage="ab" href="index.html">3. A/B-аналіз</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a></div><div class="panel-tools"><a href="#report-contents">Зміст цього звіту</a><button aria-pressed="false" hidden="" id="code-toggle" type="button">Показати Python-код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/SkillForge_Kupriyanov_ab_test_analysis.ipynb">Ноутбук на GitHub ↗</a></div></nav><nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#database">1. Підключення до бази даних</a></div><div class="toc-group"><a class="toc-main" href="#experiment">2. Опис експерименту та гіпотези</a></div><div class="toc-group"><a class="toc-main" href="#sample">3. Огляд вибірки</a></div><div class="toc-group"><a class="toc-main" href="#conversion">4. Конверсія та приріст</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-4-1">4.1. Конверсія за групами</a></li><li><a href="#section-4-2">4.2. Абсолютний та відносний приріст</a></li><li><a href="#section-4-3">4.3. Графік конверсії</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#significance">5. Статистична значущість</a></div><div class="toc-group"><a class="toc-main" href="#confidence-interval">6. Довірчий інтервал 95%</a></div><div class="toc-group"><a class="toc-main" href="#sensitivity">7. Аналіз чутливості</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-7-1">7.1. Найгірший сценарій для групи B</a></li><li><a href="#section-7-2">7.2. Найкращий сценарій для групи B</a></li><li><a href="#section-7-3">7.3. Порівняння сценаріїв</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#segments">8. Аналіз сегментів</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-8-1">8.1. Конверсія за пристроями</a></li><li><a href="#section-8-2">8.2. Конверсія за країнами</a></li><li><a href="#section-8-3">8.3. Висновки сегментного аналізу</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#weekly-trends">9. Тижневі тренди</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#section-9-1">9.1. Порівняння періодів експерименту</a></li><li><a href="#section-9-2">9.2. Щоденні коливання</a></li><li><a href="#section-9-3">9.3. Висновки щодо трендів</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#conclusions">10. Висновки та бізнес-рекомендації</a><details><summary>Підрозділи (5)</summary><ul><li><a href="#section-10-1">10.1. Основні результати A/B-тесту</a></li><li><a href="#section-10-2">10.2. Практична значущість</a></li><li><a href="#methodology-notes">10.3. Додаткові результати та обмеження</a></li><li><a href="#recommendations">10.4. Бізнес-рекомендації</a></li><li><a href="#section-10-5">10.5. Загальний висновок</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#sql">SQL. Таблиці та аналітичні view</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#sql-schema">Таблиці та обмеження</a></li><li><a href="#sql-daily">Щоденна агрегація — v_daily_agg</a></li><li><a href="#sql-users">Підсумковий статус — v_user_conversion</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="database">1. Підключення до бази даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Підключимося до PostgreSQL та завантажимо підготовлені дані для подальшого A/B аналізу.</p>
+<h2 id="database">1. Підключення до бази даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Підключимося до PostgreSQL та завантажимо підготовлені дані для подальшого A/B аналізу.</p>
 </div>
 </div>
 </div>
@@ -509,7 +527,7 @@ memory usage: 2.3+ KB
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="experiment">2. Опис експерименту та гіпотези</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h2 id="experiment">2. Опис експерименту та гіпотези</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -535,7 +553,7 @@ memory usage: 2.3+ KB
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="sample">3. Огляд вибірки</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Перевіримо кількість користувачів у групах A/B та розподіл статусів конверсії перед статистичним аналізом.</p>
+<h2 id="sample">3. Огляд вибірки</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Перевіримо кількість користувачів у групах A/B та розподіл статусів конверсії перед статистичним аналізом.</p>
 </div>
 </div>
 </div>
@@ -677,13 +695,13 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-4"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conversion">4. Конверсія та приріст</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Розрахуємо конверсію для груп A та B, абсолютну різницю та відносний приріст конверсії.</p>
+<h2 id="conversion">4. Конверсія та приріст</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Розрахуємо конверсію для груп A та B, абсолютну різницю та відносний приріст конверсії.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-4-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-4-1">4.1. Конверсія за групами</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-4-1">4.1. Конверсія за групами</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -766,7 +784,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-4-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-4-2">4.2. Абсолютний та відносний приріст</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-4-2">4.2. Абсолютний та відносний приріст</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -808,7 +826,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-4-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-4-3">4.3. Графік конверсії</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Конверсія A/B серед користувачів із відомим підсумковим статусом. Використано вже розраховані <code>crn_a</code>, <code>crn_b</code> та <code>absolute_lift</code>.</p>
+<h3 id="section-4-3">4.3. Графік конверсії</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Конверсія A/B серед користувачів із відомим підсумковим статусом. Використано вже розраховані <code>crn_a</code>, <code>crn_b</code> та <code>absolute_lift</code>.</p>
 </div>
 </div>
 </div>
@@ -850,7 +868,7 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-5"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="significance">5. Статистична значущість</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Перевіримо статистичну значущість різниці конверсій між групами A та B за допомогою двовибіркового z-тесту для пропорцій при рівні значущості α = 0.05.</p>
+<h2 id="significance">5. Статистична значущість</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Перевіримо статистичну значущість різниці конверсій між групами A та B за допомогою двовибіркового z-тесту для пропорцій при рівні значущості α = 0.05.</p>
 </div>
 </div>
 </div>
@@ -931,7 +949,7 @@ p-значення: 1.694e-101
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-6"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="confidence-interval">6. Довірчий інтервал 95%</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Розрахуємо 95% довірчий інтервал для абсолютної різниці конверсій між групами B та A, щоб оцінити точність отриманого ефекту.</p>
+<h2 id="confidence-interval">6. Довірчий інтервал 95%</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Розрахуємо 95% довірчий інтервал для абсолютної різниці конверсій між групами B та A, щоб оцінити точність отриманого ефекту.</p>
 </div>
 </div>
 </div>
@@ -991,7 +1009,7 @@ p-значення: 1.694e-101
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-7"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="sensitivity">7. Аналіз чутливості</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Перевіримо, наскільки пропущені значення <code>conversion_status</code> можуть вплинути на результати A/B-тесту.</p>
+<h2 id="sensitivity">7. Аналіз чутливості</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Перевіримо, наскільки пропущені значення <code>conversion_status</code> можуть вплинути на результати A/B-тесту.</p>
 <p>У попередніх розрахунках користувачів із невідомим статусом було виключено. Оскільки частка пропусків відрізняється між групами A (2.88%) та B (1.74%), проведемо аналіз чутливості за трьома сценаріями:</p>
 <ol>
 <li><strong>Основний сценарій:</strong> виключаємо користувачів із невідомим статусом, як в основному аналізі.</li>
@@ -1004,7 +1022,7 @@ p-значення: 1.694e-101
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-7-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-7-1">7.1. Найгірший сценарій для групи B</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-7-1">7.1. Найгірший сценарій для групи B</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1049,7 +1067,7 @@ CR B: 63.60%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-7-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-7-2">7.2. Найкращий сценарій для групи B</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-7-2">7.2. Найкращий сценарій для групи B</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1088,7 +1106,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-7-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-7-3">7.3. Порівняння сценаріїв</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-7-3">7.3. Порівняння сценаріїв</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1176,14 +1194,14 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-8"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="segments">8. Аналіз сегментів</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Проаналізуємо конверсію груп A та B за пристроями й країнами, щоб оцінити ефективність нового онбордингу в різних сегментах.</p>
+<h2 id="segments">8. Аналіз сегментів</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Проаналізуємо конверсію груп A та B за пристроями й країнами, щоб оцінити ефективність нового онбордингу в різних сегментах.</p>
 <p>Для кожного сегмента розрахуємо кількість користувачів із відомим статусом конверсії, конверсію та абсолютний приріст. Пропущені статуси конверсії виключаємо, як і в основному аналізі.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-8-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-8-1">8.1. Конверсія за пристроями</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-8-1">8.1. Конверсія за пристроями</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1339,7 +1357,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-8-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-8-2">8.2. Конверсія за країнами</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-8-2">8.2. Конверсія за країнами</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1505,7 +1523,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-8-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-8-3">8.3. Висновки сегментного аналізу</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Сегментний аналіз проведено для перевірки ефективності нового онбордингу серед користувачів різних пристроїв та країн.</p>
+<h3 id="section-8-3">8.3. Висновки сегментного аналізу</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Сегментний аналіз проведено для перевірки ефективності нового онбордингу серед користувачів різних пристроїв та країн.</p>
 <p><strong>За пристроями:</strong> група B демонструє вищу конверсію в усіх категоріях. Найбільший Абсолютний приріст спостерігається для Tablet (+25.33 п.п.), а Mobile (+21.66 п.п.) і Desktop (+21.32 п.п.) мають схожі результати.</p>
 <p><strong>За країнами:</strong> у всіх п'яти основних країнах конверсія групи B також вища за A. Найбільший приріст зафіксовано у BR (+24.81 п.п.), найменший — у FR (+15.64 п.п.).</p>
 <p>Для Smartwatch, TV та країни XX результати слід інтерпретувати обережно через малі вибірки. Категорії з невідомим пристроєм або країною не можна однозначно віднести до конкретних сегментів.</p>
@@ -1515,14 +1533,14 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-9"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="weekly-trends">9. Тижневі тренди</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Проаналізуємо щотижневу динаміку використання SkillForge, щоб визначити, як змінюється активність користувачів протягом експерименту та чи відрізняються тренди між групами A і B.</p>
+<h2 id="weekly-trends">9. Тижневі тренди</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Проаналізуємо щотижневу динаміку використання SkillForge, щоб визначити, як змінюється активність користувачів протягом експерименту та чи відрізняються тренди між групами A і B.</p>
 <p>Для аналізу використаємо щоденні агреговані дані з <code>v_daily_agg</code>. Розділимо 20 днів експерименту на три періоди (7, 7 і 6 днів) та порівняємо середню кількість користувачів із записами за день для кожної групи.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-9-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-9-1">9.1. Порівняння періодів експерименту</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Використаємо кількість користувачів із записами <code>daily</code>. Порівняємо середню кількість таких користувачів за день у періодах <strong>01–07.08, 08–14.08 та 15–20.08</strong> (7, 7 і 6 днів), а також поденні графіки. Це показник наявності щоденних записів, а не основний CR у преміум-підписку.</p>
+<h3 id="section-9-1">9.1. Порівняння періодів експерименту</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Використаємо кількість користувачів із записами <code>daily</code>. Порівняємо середню кількість таких користувачів за день у періодах <strong>01–07.08, 08–14.08 та 15–20.08</strong> (7, 7 і 6 днів), а також поденні графіки. Це показник наявності щоденних записів, а не основний CR у преміум-підписку.</p>
 </div>
 </div>
 </div>
@@ -1936,7 +1954,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-9-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-9-2">9.2. Щоденні коливання</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h3 id="section-9-2">9.2. Щоденні коливання</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
@@ -1996,7 +2014,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-9-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-9-3">9.3. Висновки щодо трендів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Аналіз показав, що протягом перших двох тижнів середня щоденна кількість користувачів із записами залишалася відносно стабільною. На третьому тижні спостерігається зниження показника в обох групах.</p>
+<h3 id="section-9-3">9.3. Висновки щодо трендів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Аналіз показав, що протягом перших двох тижнів середня щоденна кількість користувачів із записами залишалася відносно стабільною. На третьому тижні спостерігається зниження показника в обох групах.</p>
 <p>Поденний аналіз виявив повторювану тижневу закономірність: найменша кількість записів припадає на неділі, а найбільша — на четверги. Динаміка груп A та B майже однакова, що свідчить про схожий характер щоденних коливань.</p>
 <p>У третьому періоді (15–20 серпня) немає четверга, який має найвищі значення. Інший склад днів тижня може частково пояснювати нижче середнє; сама кількість днів не пояснює зниження середнього показника.</p>
 <p><strong>Загалом:</strong> на графіках групи A та B демонструють схожий характер щоденних коливань. Статистичну рівність трендів не перевіряли. При цьому показник відображає кількість користувачів із щоденними записами, а не основну конверсію в преміум-підписку.</p>
@@ -2005,13 +2023,13 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-10"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conclusions">10. Висновки та бізнес-рекомендації</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+<h2 id="conclusions">10. Висновки та бізнес-рекомендації</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-10-1"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-10-1">10.1. Основні результати A/B-тесту</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Метою експерименту SkillForge було визначити, чи підвищує новий онбординг (група B) конверсію користувачів у преміум-підписку порівняно з традиційним варіантом (група A).</p>
+<h3 id="section-10-1">10.1. Основні результати A/B-тесту</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Метою експерименту SkillForge було визначити, чи підвищує новий онбординг (група B) конверсію користувачів у преміум-підписку порівняно з традиційним варіантом (група A).</p>
 <p>За результатами аналізу отримано:</p>
 <table>
 <thead>
@@ -2057,7 +2075,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-10-2"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-10-2">10.2. Практична значущість</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Отриманий приріст конверсії є суттєвим для основної бізнес-метрики — оформлення преміум-підписки.</p>
+<h3 id="section-10-2">10.2. Практична значущість</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Отриманий приріст конверсії є суттєвим для основної бізнес-метрики — оформлення преміум-підписки.</p>
 <p>За умови збереження результатів експерименту новий онбординг потенційно може забезпечувати приблизно <strong>216 додаткових преміум-підписок на кожну 1 000 користувачів із відомим статусом конверсії</strong> порівняно з традиційним варіантом.</p>
 <p>Водночас для оцінки фінансового ефекту необхідні додаткові дані про дохід від підписок, витрати на впровадження та утримання користувачів.</p>
 </div>
@@ -2065,7 +2083,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-10-3"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="methodology-notes">10.3. Додаткові результати та обмеження</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p><strong>Аналіз чутливості.</strong> Перевірка впливу невідомих статусів конверсії показала, що перевага групи B зберігається за всіх розглянутих сценаріїв. Абсолютний приріст становить від +18.84 до +23.45 п.п. Це свідчить про стійкість спостережуваної переваги до можливих значень пропущених статусів.</p>
+<h3 id="methodology-notes">10.3. Додаткові результати та обмеження</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p><strong>Аналіз чутливості.</strong> Перевірка впливу невідомих статусів конверсії показала, що перевага групи B зберігається за всіх розглянутих сценаріїв. Абсолютний приріст становить від +18.84 до +23.45 п.п. Це свідчить про стійкість спостережуваної переваги до можливих значень пропущених статусів.</p>
 <p><strong>Сегментний аналіз.</strong> Вища конверсія групи B спостерігається на основних типах пристроїв та в усіх п'яти основних країнах. Найбільший Абсолютний приріст серед пристроїв зафіксовано для Tablet (+25.33 п.п.), серед основних країн — для BR (+24.81 п.п.). Результати малочисельних сегментів потребують обережної інтерпретації.</p>
 <p><strong>Тижнева динаміка.</strong> Групи A та B демонструють схожі коливання кількості користувачів зі щоденними записами. Помітна повторювана тижнева закономірність, однак наявні дані не дозволяють однозначно оцінити вплив онбордингу на активність користувачів.</p>
 <p><strong>Обмеження аналізу:</strong> основні статистичні розрахунки виконано для користувачів із відомим статусом конверсії. Також не проводилася окрема статистична перевірка відмінностей ефекту між сегментами. Тому результати сегментного аналізу слід розглядати як описові.</p>
@@ -2074,7 +2092,7 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-10-4"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="recommendations">10.4. Бізнес-рекомендації</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>На основі отриманих результатів рекомендується:</p>
+<h3 id="recommendations">10.4. Бізнес-рекомендації</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>На основі отриманих результатів рекомендується:</p>
 <ol>
 <li><strong>Розглядати новий онбординг B як пріоритетний варіант для впровадження</strong>, оскільки він демонструє статистично значуще та практично суттєве підвищення конверсії.</li>
 <li><strong>Перед повним запуском перевірити якість даних і відстеження конверсій</strong>, зокрема причини пропущених значень та коректність реєстрації преміум-підписок.</li>
@@ -2086,17 +2104,140 @@ CR B: 65.34%
 </div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-ab-section-10-5"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="section-10-5">10.5. Загальний висновок</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>A/B-тест SkillForge показав, що новий онбординг групи B має суттєву перевагу над традиційним варіантом за конверсією у преміум-підписку.</p>
+<h3 id="section-10-5">10.5. Загальний висновок</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>A/B-тест SkillForge показав, що новий онбординг групи B має суттєву перевагу над традиційним варіантом за конверсією у преміум-підписку.</p>
 <p><strong>Зростання конверсії на 21.60 п.п. (+50.08% відносно групи A) є статистично значущим і потенційно цінним для бізнесу.</strong> Результати додаткових перевірок підтримують цей висновок.</p>
 <p>Новий онбординг рекомендовано розглядати для поетапного впровадження після перевірки якості даних і контролю додаткових бізнес-метрик.</p>
 </div>
 </div>
 </div>
-<footer class="report-footer"><a href="eda.html">← До очищення даних</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
-const bar=document.querySelector('.toolbar');
-const resize=()=>document.documentElement.style.setProperty('--toolbar-h',bar.getBoundingClientRect().height+'px');
-resize();if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(bar);else addEventListener('resize',resize);
+<section class="sql-section"><h2 id="sql">SQL. Таблиці та аналітичні view</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Авторський код із файлу <code>SkillForge_sql(1).sql</code>: створення таблиць, ключів, обмежень та двох view. <a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/sql/01_schema_and_views.sql">Переглянути SQL-файл на GitHub ↗</a></p><nav aria-label="Розділи SQL" class="sql-shortcuts"><a href="#sql-schema">Таблиці та обмеження</a><a href="#sql-daily">Щоденна агрегація — v_daily_agg</a><a href="#sql-users">Підсумковий статус користувача — v_user_conversion</a></nav><h3 id="sql-schema">Таблиці та обмеження</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><div class="sql-code"><div class="highlight"><pre><span></span><span class="c1">--Ствоення таблиць та структури таблиць </span>
+
+
+
+<span class="c1">-- Довідник типів пристроїв користувачів</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">device</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">device_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">device_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+
+<span class="p">);</span>
+
+<span class="c1">-- Довідник країн користувачів</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">country_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">country_code</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+
+<span class="p">);</span>
+
+<span class="c1">-- Довідник груп A/B тесту:</span>
+<span class="c1">-- A — контрольна група, B — тестова група</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">experiment_group</span><span class="w"> </span><span class="p">(</span><span class="w"> </span>
+
+<span class="n">group_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">group_label</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">group_label</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'A'</span><span class="p">,</span><span class="w"> </span><span class="s1">'B'</span><span class="p">))</span>
+
+<span class="p">);</span>
+
+
+<span class="c1">-- Основна таблиця користувачів.</span>
+<span class="c1">-- Зберігає пристрій, країну, групу A/B тесту та кількість днів користування продуктом.</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">user_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">device_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="n">country_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="n">group_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="n">days_on_product</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">days_on_product</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">device</span><span class="p">(</span><span class="n">device_id</span><span class="p">),</span>
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">country_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">country</span><span class="p">(</span><span class="n">country_id</span><span class="p">),</span>
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">experiment_group</span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span>
+
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">user_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="nb">date</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">converted</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">converted</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)),</span>
+
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="p">),</span>
+<span class="w">  </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+<span class="p">);</span>
+
+
+<span class="c1">-- Щоденні записи активності користувачів у межах A/B тесту.</span>
+<span class="c1">-- converted: 1 — конверсія відбулася, 0 — не відбулася, NULL — статус конверсії невідомий.</span>
+
+</pre></div>
+</div><h3 id="sql-daily">Щоденна агрегація — v_daily_agg</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><div class="sql-code"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v_daily_agg</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_users</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_conversions</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_unknown_convert</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_known</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ROUND</span><span class="p">((</span><span class="k">SUM</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)::</span><span class="nb">NUMERIC</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">conver_rate</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">u</span><span class="w"> </span>
+<span class="w">   </span><span class="k">JOIN</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">d</span><span class="w"> </span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span>
+<span class="w">   </span><span class="k">JOIN</span><span class="w"> </span><span class="n">experiment_group</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">eg</span><span class="w"> </span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">group_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eg</span><span class="p">.</span><span class="n">group_id</span><span class="w"> </span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">;</span>
+
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">v_daily_agg</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">group_label</span><span class="p">;</span>
+
+<span class="c1">--Денна агрегація показує кількість користувачів, підтверджених конверсій, невідомих статусів та conversion rate окремо для груп A і B за кожен день тесту.</span>
+
+</pre></div>
+</div><h3 id="sql-users">Підсумковий статус користувача — v_user_conversion</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><div class="sql-code"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v_user_conversion</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">device_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">country_code</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">days_on_product</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CASE</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">da</span><span class="p">.</span><span class="n">converted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">da</span><span class="p">.</span><span class="n">converted</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="k">THEN</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">        </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">conversion_status</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">u</span>
+<span class="w">   </span><span class="k">JOIN</span><span class="w"> </span><span class="n">experiment_group</span><span class="w"> </span><span class="n">eg</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">group_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eg</span><span class="p">.</span><span class="n">group_id</span>
+<span class="w">   </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="n">d</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">device_id</span>
+<span class="w">   </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">c</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">country_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">country_id</span>
+<span class="w">   </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="n">da</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">da</span><span class="p">.</span><span class="n">user_id</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">device_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">country_code</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">days_on_product</span><span class="p">;</span>
+
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">v_user_conversion</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">user_id</span><span class="p">;</span>
+
+<span class="c1">--v_user_conversion формує один підсумковий запис на кожного користувача та визначає його статус конверсії за весь період тесту. </span>
+<span class="c1">--View буде використана для основного A/B аналізу та сегментації користувачів.</span>
+</pre></div>
+</div></section><footer class="report-footer"><a href="eda.html">← До очищення даних</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a><a href="#project-navigation">До панелі навігації ↑</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
 const button=document.getElementById('code-toggle');
 document.body.classList.add('code-hidden');button.hidden=false;
-button.addEventListener('click',()=>{const hidden=document.body.classList.toggle('code-hidden');button.textContent=hidden?'Показати код':'Приховати код';button.setAttribute('aria-pressed',String(!hidden));});
+button.addEventListener('click',()=>{const hidden=document.body.classList.toggle('code-hidden');button.textContent=hidden?'Показати Python-код':'Приховати Python-код';button.setAttribute('aria-pressed',String(!hidden));});
+const updateActive=()=>{const report=document.body.dataset.report;const active=report==='ab'&&location.hash.startsWith('#sql')?'sql':report;document.querySelectorAll('.project-links a[data-stage]').forEach(a=>{if(a.dataset.stage===active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});};
+updateActive();addEventListener('hashchange',updateActive);
 }());</script></body></html>
