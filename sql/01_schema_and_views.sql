@@ -44,9 +44,6 @@ FOREIGN KEY (group_id) REFERENCES experiment_group(group_id)
 
 );
 
-
--- Щоденні записи активності користувачів у межах A/B тесту.
--- converted: 1 — конверсія відбулася, 0 — не відбулася, NULL — статус конверсії невідомий.
 CREATE TABLE daily (
 
 user_id INTEGER NOT NULL,
@@ -58,6 +55,9 @@ converted INTEGER CHECK (converted IN (0, 1)),
 
 );
 
+
+-- Щоденні записи активності користувачів у межах A/B тесту.
+-- converted: 1 — конверсія відбулася, 0 — не відбулася, NULL — статус конверсії невідомий.
 
 CREATE OR REPLACE VIEW v_daily_agg AS 
 SELECT 
