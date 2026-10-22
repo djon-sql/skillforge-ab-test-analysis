@@ -100,7 +100,7 @@ def export_notebook(name, filename, title, subtitle, current):
     note = ('<div class="reading-note"><strong>Як читати:</strong> результати й пояснення відкриті; '
             'код можна розгорнути під кожним блоком або однією кнопкою. Зміст ліворуч веде до розділів. '
             'Широкі таблиці можна прокручувати горизонтально. '
-            'Для повторного обчислення потрібне середовище з README.</div>')
+            'Переходи між сторінками розміщені у верхній панелі.</div>')
     body = note + '<article class="notebook">' + str(soup) + '</article>'
     (ROOT / filename).write_text(shell(title, subtitle, current, body, items, name), encoding="utf-8")
     return nb
@@ -128,13 +128,13 @@ OVERVIEW = '''
 <section id="trends" tabindex="-1"><div class="section-label">04 / ВИКОРИСТАННЯ ПРОДУКТУ</div><h2>Щоденні коливання A і B схожі</h2><figure><img src="assets/03_daily_usage.png" alt="Щоденна кількість користувачів із записами daily в групах A та B за 01–20 серпня 2025"><figcaption>На графіку — користувачі зі щоденними записами, а не основна конверсія.</figcaption></figure>
 <p>Найнижчі значення припадають на неділі, найвищі — на четверги. Перші два періоди відносно стабільні; середнє третього нижче в обох групах.</p><p class="scope-note">Третій період містить шість днів і не має четверга. Склад днів тижня частково пояснює нижче середнє. Статистичну рівність трендів не перевіряли.</p><a class="section-link" href="ab-test.html#section-9">Тижневі графіки та пояснення →</a></section>
 <section id="data" tabindex="-1"><div class="section-label">05 / ПІДГОТОВКА</div><h2>Від сирих записів до перевіреної вибірки</h2><div class="table-wrap"><table><thead><tr><th>Крок</th><th>Результат</th></tr></thead><tbody><tr><td>Початкові щоденні записи</td><td>61 002</td></tr><tr><td>Видалення 1 196 повних дублікатів</td><td>59 806</td></tr><tr><td>Видалення 60 записів поза експериментом</td><td>59 746</td></tr><tr><td>Користувачі після очищення</td><td>10 000</td></tr><tr><td>З визначеною групою A/B</td><td>9 946</td></tr></tbody></table></div>
-<p>20 негативних значень days_on_product замінено на пропуски. 501 невідомий щоденний статус збережено: невідоме значення не є нулем.</p><a class="section-link" href="eda.html">Повний EDA зі збереженим кодом →</a></section>
+<p>20 негативних значень days_on_product замінено на пропуски. 501 невідомий щоденний статус збережено: невідоме значення не є нулем.</p><a class="section-link" href="eda.html">Підготовка даних: перевірки й очищення →</a></section>
 <section id="method" tabindex="-1"><div class="section-label">06 / МЕТОДИКА</div><h2>Що означає конверсія</h2><p>Один користувач має підсумковий статус за весь період: 1 — є підтверджена конверсія; NULL — підтвердження немає, але є невідомі статуси або немає записів; 0 — усі наявні статуси відомі та нульові.</p>
 <p><strong>Конверсія = кількість користувачів зі статусом 1 / кількість користувачів зі статусом 0 або 1.</strong></p><p>v_user_conversion містить один рядок на користувача; v_daily_agg — один рядок на дату та групу. Щоденна частка позитивних статусів має інший знаменник і не замінює головну метрику.</p>
 <div class="callout caution"><strong>Обмеження.</strong> Навчальні дані, 20 днів спостережень, нерівномірні пропуски, малі сегменти. Дохід, утримання та скасування не розраховані — це показники для контролю майбутнього запуску.</div><a class="section-link" href="ab-test.html#section-2">Опис експерименту й гіпотези →</a></section>
 <section id="materials" tabindex="-1"><div class="section-label">07 / МАТЕРІАЛИ</div><h2>Переглянути повний проєкт</h2><div class="two-column"><a class="material-card" href="eda.html"><span class="card-tag">PYTHON · PANDAS</span><h3>EDA та очищення →</h3><p>Якість даних, пропуски, дублікати, типи та підготовка CSV.</p></a><a class="material-card" href="ab-test.html"><span class="card-tag">СТАТИСТИКА · БІЗНЕС</span><h3>A/B-аналіз →</h3><p>Конверсія, значущість, інтервал, чутливість, сегменти та висновки.</p></a></div>
 <a class="tableau-preview" href="https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-" target="_blank" rel="noopener noreferrer"><img src="assets/04_tableau_overview.png" alt="Опублікований головний дашборд SkillForge у Tableau"><span>Відкрити інтерактивний Tableau ↗</span></a>
-<div class="download-links"><a href="SkillForge_Kupriyanov_eda_cleaning.ipynb" download>EDA .ipynb ↓</a><a href="SkillForge_Kupriyanov_ab_test_analysis.ipynb" download>A/B .ipynb ↓</a><a href="https://github.com/djon-sql/skillforge-ab-test-analysis">README, дані та SQL ↗</a></div></section></article>
+<div class="download-links"><a href="SkillForge_Kupriyanov_ab_test_analysis.ipynb" download>A/B .ipynb ↓</a><a href="https://github.com/djon-sql/skillforge-ab-test-analysis">README та SQL ↗</a></div></section></article>
 '''
 
 
@@ -142,8 +142,13 @@ def main():
     (ROOT / "assets").mkdir(exist_ok=True)
     ab = export_notebook("SkillForge_Kupriyanov_ab_test_analysis.ipynb", "ab-test.html",
                          "A/B-аналіз нового онбордингу", "Від гіпотези до бізнес-рекомендацій: конверсія, статистика, сегменти та тренди.", "ab")
-    export_notebook("SkillForge_Kupriyanov_eda_cleaning.ipynb", "eda.html",
-                    "Дослідження та очищення даних", "Перевірка якості п’яти таблиць і підготовка даних до PostgreSQL та A/B-аналізу.", "eda")
+    eda_body = (ROOT / "scripts" / "eda_summary.html").read_text(encoding="utf-8")
+    eda_soup = BeautifulSoup(eda_body, "html.parser")
+    eda_items = [(2, section["id"], section.find("h2").get_text(" ", strip=True))
+                 for section in eda_soup.select("section[id]")]
+    (ROOT / "eda.html").write_text(shell("Дослідження та очищення даних",
+        "Якість п’яти таблиць, правила очищення й узагальнені результати підготовки до аналізу.",
+        "eda", eda_body, eda_items), encoding="utf-8")
     for i, name in [(37, "01_conversion"), (66, "02_weekly_usage"), (69, "03_daily_usage")]:
         png = ab.cells[i].outputs[0].data["image/png"]
         (ROOT / "assets" / f"{name}.png").write_bytes(base64.b64decode(png))
