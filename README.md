@@ -4,7 +4,7 @@
 
 **Вебзвіти:** [1. Очищення даних](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html) · [2. SQL: таблиці та view](https://djon-sql.github.io/skillforge-ab-test-analysis/#sql) · [3. A/B-аналіз](https://djon-sql.github.io/skillforge-ab-test-analysis/) · [Tableau Public](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-)
 
-**Ноутбуки:** [Очищення даних](SkillForge_Kupriyanov_eda_cleaning.ipynb) · [A/B-аналіз](SkillForge_Kupriyanov_ab_test_analysis.ipynb)
+**Ноутбуки:** [Очищення даних](notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb) · [A/B-аналіз](notebooks/SkillForge_Kupriyanov_ab_test_analysis.ipynb)
 
 **Інструменти:** Python · Pandas · Matplotlib · Statsmodels · PostgreSQL · Tableau
 
@@ -73,7 +73,7 @@ SkillForge — навчальна платформа. Перевіряється
 
 Довідники не містили пропусків і дублікатів, а заповнені зовнішні ID відповідали довідникам. ID-поля та `converted` приведено до цілочисельних типів із підтримкою пропусків, `date` — до формату дати.
 
-[Код і результати очищення у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html#data-quality) · [Ноутбук очищення](SkillForge_Kupriyanov_eda_cleaning.ipynb)
+[Код і результати очищення у вебзвіті →](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html#data-quality) · [Ноутбук очищення](notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb)
 
 <a id="sql"></a>
 ### 3.2. PostgreSQL: таблиці та аналітичні view
@@ -164,8 +164,8 @@ SkillForge — навчальна платформа. Перевіряється
 |---|---|
 | [Очищення даних — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/eda.html) | HTML-версія першого ноутбука: перевірки якості, очищення, код та збережені результати. Зміст і перехід до A/B-аналізу |
 | [A/B-аналіз — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/) | HTML-версія другого ноутбука: розрахунки, таблиці, графіки та висновки. Зміст і перехід до очищення даних |
-| [Ноутбук очищення](SkillForge_Kupriyanov_eda_cleaning.ipynb) | Авторський Python-код та збережені узагальнені результати підготовки даних |
-| [Ноутбук A/B-аналізу](SkillForge_Kupriyanov_ab_test_analysis.ipynb) | Авторські розрахунки, графіки й узагальнені результати |
+| [Ноутбук очищення](notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb) | Авторський Python-код та збережені узагальнені результати підготовки даних |
+| [Ноутбук A/B-аналізу](notebooks/SkillForge_Kupriyanov_ab_test_analysis.ipynb) | Авторські розрахунки, графіки й узагальнені результати |
 | [SQL — вебверсія](https://djon-sql.github.io/skillforge-ab-test-analysis/#sql) | Повний код створення таблиць і view з навігацією. [Авторський SQL-файл](sql/01_schema_and_views.sql) |
 | [Tableau Public](https://public.tableau.com/app/profile/djon.fa/viz/SkillForce/01AB-) | Два інтерактивні дашборди |
 
