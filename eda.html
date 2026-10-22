@@ -1,0 +1,1773 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="SkillForge — дослідження та очищення даних ¶. HTML-версія авторського ноутбука зі змістом та переходами між етапами."><title>SkillForge — дослідження та очищення даних ¶ · Дмитро Купріянов</title><style>pre { line-height: 125%; }
+td.linenos .normal { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f0f0f0; }
+.highlight .c { color: #60A0B0; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #007020; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #60A0B0; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #60A0B0; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #007020 } /* Comment.Preproc */
+.highlight .cpf { color: #60A0B0; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #60A0B0; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #60A0B0; background-color: #FFF0F0 } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #C65D09; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #007020 } /* Keyword.Pseudo */
+.highlight .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #902000 } /* Keyword.Type */
+.highlight .m { color: #40A070 } /* Literal.Number */
+.highlight .s { color: #4070A0 } /* Literal.String */
+.highlight .na { color: #4070A0 } /* Name.Attribute */
+.highlight .nb { color: #007020 } /* Name.Builtin */
+.highlight .nc { color: #0E84B5; font-weight: bold } /* Name.Class */
+.highlight .no { color: #60ADD5 } /* Name.Constant */
+.highlight .nd { color: #555; font-weight: bold } /* Name.Decorator */
+.highlight .ni { color: #D55537; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #007020 } /* Name.Exception */
+.highlight .nf { color: #06287E } /* Name.Function */
+.highlight .nl { color: #002070; font-weight: bold } /* Name.Label */
+.highlight .nn { color: #0E84B5; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #BB60D5 } /* Name.Variable */
+.highlight .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #40A070 } /* Literal.Number.Bin */
+.highlight .mf { color: #40A070 } /* Literal.Number.Float */
+.highlight .mh { color: #40A070 } /* Literal.Number.Hex */
+.highlight .mi { color: #40A070 } /* Literal.Number.Integer */
+.highlight .mo { color: #40A070 } /* Literal.Number.Oct */
+.highlight .sa { color: #4070A0 } /* Literal.String.Affix */
+.highlight .sb { color: #4070A0 } /* Literal.String.Backtick */
+.highlight .sc { color: #4070A0 } /* Literal.String.Char */
+.highlight .dl { color: #4070A0 } /* Literal.String.Delimiter */
+.highlight .sd { color: #4070A0; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #4070A0 } /* Literal.String.Double */
+.highlight .se { color: #4070A0; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #4070A0 } /* Literal.String.Heredoc */
+.highlight .si { color: #70A0D0; font-style: italic } /* Literal.String.Interpol */
+.highlight .sx { color: #C65D09 } /* Literal.String.Other */
+.highlight .sr { color: #235388 } /* Literal.String.Regex */
+.highlight .s1 { color: #4070A0 } /* Literal.String.Single */
+.highlight .ss { color: #517918 } /* Literal.String.Symbol */
+.highlight .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #06287E } /* Name.Function.Magic */
+.highlight .vc { color: #BB60D5 } /* Name.Variable.Class */
+.highlight .vg { color: #BB60D5 } /* Name.Variable.Global */
+.highlight .vi { color: #BB60D5 } /* Name.Variable.Instance */
+.highlight .vm { color: #BB60D5 } /* Name.Variable.Magic */
+.highlight .il { color: #40A070 } /* Literal.Number.Integer.Long */
+
+:root{color-scheme:light;--bg:#fff;--text:#243343;--muted:#627182;--line:#dce3e9;--panel:#f6f8fa;--link:#155f7a;--code:#f6f8fa;--toolbar-h:72px}
+*{box-sizing:border-box}html{scroll-padding-top:0}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:var(--link);text-underline-offset:3px}a:hover{text-decoration:underline}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #c2822d;outline-offset:3px}
+[id]{scroll-margin-top:calc(var(--toolbar-h) + 14px)}
+.toolbar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line)}
+.toolbar-inner{max-width:1040px;margin:auto;padding:9px 22px;display:flex;align-items:center;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;font-size:12px;line-height:1.4}
+.report-switch,.report-tools{display:flex;gap:5px 12px;align-items:center;flex-wrap:wrap}.toolbar a{text-decoration:none;white-space:nowrap}.report-switch a{padding:5px 8px;border-radius:5px;font-weight:600}.report-switch a[aria-current=page]{background:var(--link);color:#fff}.report-tools button{background:var(--link);color:#fff;border:0;border-radius:5px;padding:6px 10px;font:600 12px/1.4 inherit;cursor:pointer}
+main{max-width:1040px;margin:18px auto 40px;padding:0 22px;min-width:0}.cell{margin:0;padding:5px 0;min-width:0}.text_cell_render{padding:0;overflow-wrap:anywhere}
+h1,h2,h3,h4{line-height:1.3;letter-spacing:-.15px;color:var(--text)}h1{font-size:27px;margin:8px 0 12px;font-weight:700}h2{font-size:21px;margin:24px 0 9px;font-weight:650}h3{font-size:17px;margin:20px 0 8px;font-weight:650}h4{font-size:15px;margin:16px 0 7px}p{margin:8px 0 12px}ul,ol{margin:8px 0 12px;padding-left:24px}li+li{margin-top:4px}blockquote{border-left:3px solid var(--line);margin:14px 0;padding:2px 14px;color:var(--muted)}
+.anchor-link{display:none}.back-to-contents{font-size:11px;line-height:1.3;margin:2px 0 11px}.back-to-contents a{color:var(--muted);text-decoration:none}
+.report-toc{margin:17px 0 22px;border:1px solid var(--line);border-radius:7px;padding:10px 12px;background:var(--bg)}.report-toc>details>summary{font-size:14px;font-weight:650;cursor:pointer}.toc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}.toc-group{border:1px solid var(--line);border-radius:5px;padding:7px 9px;background:var(--panel);min-width:0}.toc-main{font-size:12px;font-weight:600;display:block;text-decoration:none}.toc-group details{font-size:11px;margin-top:3px}.toc-group summary{color:var(--muted);cursor:pointer}.toc-group ul{margin:5px 0 1px;padding-left:17px}.toc-group li{line-height:1.45;margin:4px 0}.toc-group a{overflow-wrap:anywhere}
+.prompt{display:none}.input_area{border:1px solid var(--line);border-radius:5px;background:var(--code);overflow-x:auto;margin:2px 0 5px}.highlight{padding:9px 11px;background:var(--code)!important}.highlight pre{margin:0;white-space:pre;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:4}.output_area{min-width:0;max-width:100%;overflow-x:auto;margin:5px 0 9px}.output_text pre{font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre;margin:3px 0;padding:5px 0}.output_png img,.output_jpeg img{max-width:100%;height:auto;display:block;margin:10px 0}.output_html{overflow-x:auto;max-width:100%}table{border-collapse:collapse;margin:9px 0 14px;font-size:12px;line-height:1.5;max-width:100%;font-variant-numeric:tabular-nums}thead{border-bottom:2px solid var(--line)}th,td{padding:6px 8px;white-space:nowrap;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}tbody tr:nth-child(even){background:var(--panel)}code{font-size:.92em}p code,li code{background:var(--panel);padding:1px 4px;border-radius:3px}.code-hidden .code_cell>.input,.code-hidden .code_cell.no-output{display:none}
+.report-footer{border-top:1px solid var(--line);margin-top:25px;padding-top:13px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.scope-note{font-size:11px;color:var(--muted);margin:10px 0}.skip-link{position:absolute;left:8px;top:-80px}.skip-link:focus{top:8px;background:var(--bg);padding:8px;z-index:200}
+@media(max-width:650px){.toolbar-inner{padding:8px 14px;gap:6px 12px}.report-switch,.report-tools{gap:5px 9px}main{padding:0 14px;margin-top:14px}h1{font-size:23px}h2{font-size:19px}h3{font-size:16px}.toc-grid{grid-template-columns:1fr}.report-toc{padding:9px 10px}.toc-group{padding:6px 8px}.toc-main{font-size:12px}.highlight pre,.output_text pre{font-size:11px}th,td{padding:5px 7px}.text_cell_render{overflow-x:auto}}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#15191e;--text:#e0e6ec;--muted:#a6b2bf;--line:#39434e;--panel:#20262d;--link:#79bed8;--code:#1d232a}.report-switch a[aria-current=page],.report-tools button{background:#205b70;color:#fff}.highlight,.highlight *{color:var(--text)!important}.highlight .c,.highlight .c1{color:#a6b2bf!important}.highlight .k,.highlight .kn{color:#94c9eb!important}.highlight .s,.highlight .s1,.highlight .s2{color:#b4d8ad!important}}
+@media print{.toolbar,.back-to-contents,.report-footer,.report-toc{display:none}main{max-width:none;padding:0}body{font-size:11px}.code_cell{break-inside:avoid}}
+</style></head><body><a class="skip-link" href="#notebook">Перейти до аналізу</a><header class="toolbar"><nav class="toolbar-inner" aria-label="Навігація між звітами"><div class="report-switch"><a href="eda.html" aria-current="page">1. Очищення даних</a><a href="index.html">2. A/B-аналіз</a></div><div class="report-tools"><a href="#report-contents">Зміст</a><button type="button" id="code-toggle" aria-pressed="false" hidden>Показати код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/SkillForge_Kupriyanov_eda_cleaning.ipynb">Ноутбук ↗</a></div></nav></header><main id="notebook"><div class="cell border-box-sizing text_cell rendered" id="cell-id=969448e9"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="SkillForge-%E2%80%94-%D0%B4%D0%BE%D1%81%D0%BB%D1%96%D0%B4%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B0-%D0%BE%D1%87%D0%B8%D1%89%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85">SkillForge — дослідження та очищення даних<a class="anchor-link" href="#SkillForge-%E2%80%94-%D0%B4%D0%BE%D1%81%D0%BB%D1%96%D0%B4%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B0-%D0%BE%D1%87%D0%B8%D1%89%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85">¶</a></h1><p><strong>Автор:</strong> Дмитро Купріянов<br/>
+<strong>Період експерименту:</strong> 01–20 серпня 2025 року</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=ef764728"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Мета цього ноутбука — дослідити якість змодельованих даних A/B-тесту нового онбордингу «Миттєве занурення», виконати очищення та підготувати CSV для PostgreSQL.</p>
+<p><strong>Результат підготовки:</strong> збережено 10 000 користувачів і 59 746 щоденних записів за період тесту. Повні дублікати видалено, негативні значення <code>days_on_product</code> замінено на пропуски. Невідомі значення конверсії збережено без заміни на нуль.</p>
+</div>
+</div>
+</div>
+<nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#context">Опис проєкту</a></div><div class="toc-group"><a class="toc-main" href="#load-data">1. Завантаження даних</a></div><div class="toc-group"><a class="toc-main" href="#initial-review">2. Первинний огляд даних</a></div><div class="toc-group"><a class="toc-main" href="#data-quality">3. Перевірка якості та очищення даних</a><details><summary>Підрозділи (7)</summary><ul><li><a href="#section-3-1">3.1. Перевірка довідників</a></li><li><a href="#section-3-2">3.2. Якість даних користувачів</a></li><li><a href="#section-3-3">3.3. Якість щоденних записів</a></li><li><a href="#section-3-4">3.4. Перевірка зв’язків між таблицями</a></li><li><a href="#section-3-5">3.5. Очищення даних</a></li><li><a href="#section-3-6">3.6. Невідомі статуси конверсії</a></li><li><a href="#section-3-7">3.7. Приведення типів даних</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#export">4. Підсумкова перевірка та експорт</a><details><summary>Підрозділи (2)</summary><ul><li><a href="#cleaning-summary">Підсумок очищення</a></li><li><a href="#section-4-1">4.1. Експорт очищених таблиць</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-overview"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="context">Опис проєкту</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Мета проєкту — проаналізувати результати A/B тесту нової функції
+"Миттєве занурення" у SkillForge та перевірити, чи підвищує вона
+конверсію в преміум-підписку.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-1"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="load-data">1. Завантаження даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Завантажимо таблиці з Excel-файлу та перевіримо їхню структуру.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=98e862ee-b4d4-4d82-97cd-6f73a931bd28">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6323bb72-0b63-4fef-88b0-a9d199456141">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s1">'SkillForge.xlsx'</span>
+<span class="n">xls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">xls</span><span class="o">.</span><span class="n">sheet_names</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>['device', 'country', 'group', 'user', 'daily']</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=c6accc47-5399-4f1f-8a55-275f70d9ef77">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span><span class="s1">'device'</span><span class="p">)</span>
+<span class="n">country</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span><span class="s1">'country'</span><span class="p">)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span><span class="s1">'group'</span><span class="p">)</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span><span class="s1">'user'</span><span class="p">)</span>
+<span class="n">daily</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span> <span class="o">=</span><span class="s1">'daily'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-2"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="initial-review">2. Первинний огляд даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Проведемо первинний огляд таблиць: кількість рядків і колонок, приклади записів та типи даних.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=18a5aee1-3b4d-489c-9ab1-5185d9de7c26">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">device</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>device_id</th>
+<th>device_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>Desktop</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>Mobile</td>
+</tr>
+<tr>
+<th>2</th>
+<td>3</td>
+<td>Smartwatch</td>
+</tr>
+<tr>
+<th>3</th>
+<td>4</td>
+<td>TV</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5</td>
+<td>Tablet</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=96299272-fbcf-4879-bfcb-f49c16434c13">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">device</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 2 columns):
+ #   Column       Non-Null Count  Dtype 
+---  ------       --------------  ----- 
+ 0   device_id    5 non-null      int64 
+ 1   device_name  5 non-null      object
+dtypes: int64(1), object(1)
+memory usage: 212.0+ bytes
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=76c8312e-8347-44e6-a557-489e2cdd1508">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">country</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>country_id</th>
+<th>country_code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>BR</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>DE</td>
+</tr>
+<tr>
+<th>2</th>
+<td>3</td>
+<td>FR</td>
+</tr>
+<tr>
+<th>3</th>
+<td>4</td>
+<td>IN</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5</td>
+<td>US</td>
+</tr>
+<tr>
+<th>5</th>
+<td>6</td>
+<td>XX</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d64f9c39-d276-4461-a620-76d4dd5407d4">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">country</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 2 columns):
+ #   Column        Non-Null Count  Dtype 
+---  ------        --------------  ----- 
+ 0   country_id    6 non-null      int64 
+ 1   country_code  6 non-null      object
+dtypes: int64(1), object(1)
+memory usage: 228.0+ bytes
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=50505d09-4774-419c-b2c0-3194d3a73193">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">group</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>group_id</th>
+<th>group_label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>A</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6223d91e-d816-45ba-ab33-c9ee79b2df7e">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">group</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 2 entries, 0 to 1
+Data columns (total 2 columns):
+ #   Column       Non-Null Count  Dtype 
+---  ------       --------------  ----- 
+ 0   group_id     2 non-null      int64 
+ 1   group_label  2 non-null      object
+dtypes: int64(1), object(1)
+memory usage: 164.0+ bytes
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=1f7851e2-2270-471d-92c2-eba85b82dbbd">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=d5363e4c-7324-4d46-a239-bfb3e6055e3d">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=a00c676e"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Таблиця users містить 10 000 користувачів і 5 полів. У device_id, country_id, group_id та days_on_product присутні пропущені значення. Через наявність пропусків частина числових ідентифікаторів має тип float64. Детальну обробку пропусків і типів даних буде виконано на етапі перевірки якості та очищення даних.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=882ef59f-a40d-4497-b810-5ca16d5a4820">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=ecc98b21-1895-418d-bf7b-12256dabcecc">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=83e72c8f"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Таблиця daily містить 61 002 записи щоденної активності користувачів. Поле date коректно розпізнано як дату. У converted присутні пропущені значення, тому поле має тип float64. Коректність значень converted та періоду дат буде перевірена на етапі перевірки якості та очищення даних.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="data-quality">3. Перевірка якості та очищення даних</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><p>Перевіримо дані на пропуски, дублікати, некоректні типи,аномальні значення та порушення цілісності, після чого
+виконаємо необхідне очищення.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-1"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-1">3.1. Перевірка довідників</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5a002f11-0470-46f8-8b0e-08dc4517547e">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>device_id      0
+device_name    0
+dtype: int64
+0
+0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0d79b02c-9a4f-473e-8314-35ed6b272b27">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">country</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>country_id      0
+country_code    0
+dtype: int64
+0
+0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=36f210a8-ceb5-44c7-9a9e-c8c8b2852b08">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>group_id       0
+group_label    0
+dtype: int64
+0
+0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ceab2356-5f08-4843-8bb4-23484af7d0f8">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">[</span><span class="s1">'device_name'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">country</span><span class="p">[</span><span class="s1">'country_code'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">'group_label'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+0
+0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=2562cef8"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Висновок:</strong> довідники <code>device</code>, <code>country</code> та <code>group</code> не містять
+пропусків, повних дублікатів або повторень ключів і категорій.
+Очищення для цих таблиць не потрібне.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-2"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-2">3.2. Якість даних користувачів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=1571b52f-e4e6-4f6d-834e-e37970dde000">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d3ce6dd2-780e-465f-bdc7-dae16ed8c2be">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bf12482e-afeb-4e8f-a05e-cf647c0b21b6">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>device_id
+2.0    5958
+1.0    2867
+5.0     940
+NaN     205
+4.0      18
+3.0      12
+Name: count, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ba2b9cc9-ee95-42fc-bd69-ca485ba90b55">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">((</span><span class="n">users</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">/</span> <span class="n">users</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>device_id
+2.0    59.58
+1.0    28.67
+5.0     9.40
+NaN     2.05
+4.0     0.18
+3.0     0.12
+Name: count, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=dbd3bf7e"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Невалідних device_id не видно. У довіднику в нас допустимі ID 1–5, і тут зустрічаються саме вони + NaN, виявлено 205 (2.05%) пропущених значень</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=82d20f64-8527-45e6-bd34-35e44b4cd09b">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>country_id
+2.0    1943
+5.0    1881
+1.0    1863
+4.0    1808
+3.0    1804
+NaN     671
+6.0      30
+Name: count, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=729fb1b4-6c4c-4afc-8c3d-39b4ef521cf1">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">((</span><span class="n">users</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">/</span> <span class="n">users</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>country_id
+2.0    19.43
+5.0    18.81
+1.0    18.63
+4.0    18.08
+3.0    18.04
+NaN     6.71
+6.0     0.30
+Name: count, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=b853e0d6-ff38-4705-bb4c-423d17fef755">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=98d9aef2"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У country_id виявлено 671 пропущене значення (6.71%). Значення ID відповідають довіднику.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c1264004-8b84-4b92-bfe3-3fb4bdfa9e00">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>group_id
+1.0    5006
+2.0    4940
+NaN      54
+Name: count, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=612cdc80-17ef-4b6a-bfae-c5c8ee8755b8">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">((</span><span class="n">users</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">/</span> <span class="n">users</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>group_id
+1.0    50.06
+2.0    49.40
+NaN     0.54
+Name: count, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=b5615529"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Розподіл користувачів між групами A і B майже рівномірний (50.06% проти 49.40%), що є позитивним для A/B тесту. У 54 користувачів (0.54%) відсутнє значення group_id - ці записи потребують окремого рішення перед проведенням статистичного аналізу.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=38ba2d55-c342-4d35-8ed4-9c076c92c478">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>index</th>
+<th>days_on_product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>count</td>
+<td>9840.000000</td>
+</tr>
+<tr>
+<th>1</th>
+<td>mean</td>
+<td>29.947663</td>
+</tr>
+<tr>
+<th>2</th>
+<td>std</td>
+<td>17.952773</td>
+</tr>
+<tr>
+<th>3</th>
+<td>min</td>
+<td>-29.000000</td>
+</tr>
+<tr>
+<th>4</th>
+<td>25%</td>
+<td>15.000000</td>
+</tr>
+<tr>
+<th>5</th>
+<td>50%</td>
+<td>30.000000</td>
+</tr>
+<tr>
+<th>6</th>
+<td>75%</td>
+<td>44.000000</td>
+</tr>
+<tr>
+<th>7</th>
+<td>max</td>
+<td>78.000000</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=8e9561a4-1df8-4875-b956-94e003462b0c">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(20, 5)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=cd549f1d-39ea-4866-9ed7-86830d5dda8f">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1a3d9d77"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Виявлено 20 користувачів (0.2%) із негативним days_on_product від -29 до -2 днів. Такі значення є логічно некоректними та потребують обробки під час очищення даних.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=0b913a50-1322-43c0-aa57-d07abca457e5">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-3"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-3">3.3. Якість щоденних записів</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=66f4898b-ea79-4e50-9c62-b727dc864075">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f56a493a-8cc9-4265-a59f-4a749b4eea38">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(1196)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5f3dbfc2-e29e-4727-9f3e-96d628b63207">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="p">[[</span><span class="s1">'user_id'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">]]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(1196)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=c581ed28-7e67-4c96-a26d-4a665a3665a8">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="p">[</span><span class="n">daily</span><span class="p">[[</span><span class="s1">'user_id'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">]]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">'user_id'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=105b5968"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У таблиці daily виявлено 1196 повних дублікатів. Повторні записи мають однакові user_id, date та converted, тому їх можна безпечно видалити під час очищення даних.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b7daabed-3f2d-404d-ad78-801e5fe3baa0">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>converted
+0.0    52726
+1.0     7760
+NaN      516
+Name: count, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9988b4a8-c531-40a0-be35-10ae01b61b28">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">/</span> <span class="n">daily</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>converted
+0.0    86.433232
+1.0    12.720894
+NaN     0.845874
+Name: count, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=602cbb16"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У converted виявлено 516 пропущених значень (0.85%). Оскільки "0" означає відсутність конверсії, пропуски не будуть автоматично замінені на 0.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2c7bd502-12f8-493d-9eb2-30601fd5ef17">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2025-06-15 00:00:00
+2026-01-01 00:00:00
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ec264b69-f265-45ff-b2ca-dafcd2f90740">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s1">'2025-08-01'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(35)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b6abed2e-0097-4f16-9105-0a5785ffd452">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">'2025-08-20'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(27)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=451cb943-eb81-4e31-bae6-a9409ad8bc23">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">((</span><span class="n">daily</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s1">'2025-08-20'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s1">'2025-08-01'</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(60940)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=59bb6e51"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У таблиці daily виявлено 62 записи поза періодом експерименту: 35 до 01.08.2025 та 27 після 20.08.2025. Для подальшого A/B аналізу будуть використані лише записи за 01–20 серпня 2025 року</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-4"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-4">3.4. Перевірка зв’язків між таблицями</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=659648b1-fccf-427f-99c3-735836f95c9c">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="o">~</span><span class="n">daily</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(0)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=9ba8d0ae"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>усі користувачі з daily присутні в users. Зв’язок між таблицями коректний.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=600053cf-fd98-4c44-80ce-1f1b1785fd39">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="o">~</span><span class="n">users</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">device</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(0)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f5d0a2d6-eb14-492e-868a-f03dab077640">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="o">~</span><span class="n">users</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(0)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=809837c4-bb5b-40bf-b367-7f13443183ef">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="o">~</span><span class="n">users</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>np.int64(0)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=d4232794"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Усі заповнені ID у таблиці users коректно відповідають довідникам. Помилок у зв’язках між таблицями не виявлено.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-5"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-5">3.5. Очищення даних</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=69fcae36-065e-4d67-b2c6-756ae84534bd">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_clean</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=f1827912-2917-4417-81de-b4575cec0084">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">users_clean</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=dd4788d9-e048-4d8e-85d4-1245e7f01e07">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_clean</span><span class="p">[</span><span class="n">users_clean</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=7f85c23d-c442-4277-8623-0bd9ce0c96c6">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=8283b26e-d67e-4a9d-b708-9b7b591aa5ba">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span> <span class="o">=</span> <span class="n">daily_clean</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=37462564-974c-4b4c-8c04-429940c358e5">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+59806
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=241b7f0b-300f-4fb5-822a-935b4c70c19b">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span> <span class="o">=</span> <span class="n">daily_clean</span><span class="p">[(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s1">'2025-08-20'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s1">'2025-08-01'</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ba8c7b29-4875-41c8-8d2e-6980967da6f6">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2025-08-01 00:00:00
+2025-08-20 00:00:00
+59746
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=ddee6081"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Після видалення дублікатів залишено лише записи за період A/B тесту — з 1 по 20 серпня 2025 року.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-6"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-6">3.6. Невідомі статуси конверсії</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7fc6082c-b589-4c76-a6f8-e0efc509014b">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>converted
+0.0    51656
+1.0     7589
+NaN      501
+Name: count, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9b5a8889-b19f-407f-ad02-84081f533e5d">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">/</span> <span class="n">daily_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>converted
+0.0    86.459345
+1.0    12.702106
+NaN     0.838550
+Name: count, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=4222d0c7"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Після очищення в converted залишилось 501 пропущене значення. Щоб оцінити їх вплив, перевіряємо, скільки унікальних користувачів мають хоча б один пропуск у цій колонці.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c099c163-82d2-481d-9cb9-3ac1990b2841">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span><span class="p">[</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>485</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=f6873ab9"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>501 пропущене значення converted належать 485 унікальним користувачам. Тобто в частини користувачів є кілька днів із невідомим статусом конверсії.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=d66aaeaf-3377-4a11-ab0d-252e7af13e48">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cnt_unuq_corist</span> <span class="o">=</span> <span class="n">daily_clean</span><span class="p">[</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7732f255-fedc-4859-ac32-3b39726e07f1">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span><span class="p">[</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cnt_unuq_corist</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)][</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>256</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=d1e086ed"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Із 485 користувачів із пропусками в converted 256 мають підтверджену конверсію в інші дні. Для решти 229 користувачів факт конверсії неможливо визначити однозначно через пропущені значення.</p>
+<p>Пропуски в converted не замінюємо на 0, оскільки це могло б штучно занизити конверсію. Для 256 користувачів конверсію підтверджено в інші дні, а для 229 користувачів статус залишається невідомим. Далі перевіримо їх розподіл між групами A і B.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=d57c5317-16c6-4eb2-ae0b-e6356e8611bc">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_with_conversion</span> <span class="o">=</span> <span class="n">daily_clean</span><span class="p">[</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cnt_unuq_corist</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)][</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=4bf85b0b-a6c2-42f0-9a88-b5049235c71a">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_unknown_conversion</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cnt_unuq_corist</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">users_with_conversion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=88e6382e-73cf-430b-8a45-df4a4c557722">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">users_unknown_conversion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>229</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=ad628dc1"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Для 229 користувачів статус конверсії залишається невідомим. Далі перевіримо, чи рівномірно ці користувачі розподілені між групами A і B.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=86e9e156-a043-4f63-828f-77ddcd47a98c">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_clean</span><span class="p">[</span><span class="n">users_clean</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">users_unknown_conversion</span><span class="p">)][</span><span class="s1">'group_id'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>group_id
+1.0    142
+2.0     82
+NaN      5
+Name: count, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1c856356"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Користувачі з невідомим статусом конверсії розподілені між групами нерівномірно: 142 у групі A та 82 у групі B, ще у 5 користувачів група не визначена. Тому просте виключення таких користувачів може вплинути на результат A/B тесту.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=bc81e3bb"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Висновок</strong>: дані очищено від повних дублікатів, записів поза періодом тесту та некоректних негативних значень days_on_product. Пропуски, які неможливо коректно відновити, залишено як невідомі значення для подальшого врахування в аналізі.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-3-7"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-3-7">3.7. Приведення типів даних</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=d77236ed-b12a-4653-8f8c-eb8370aa5f74">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_clean</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">users_clean</span><span class="p">[</span><span class="s1">'device_id'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'Int64'</span><span class="p">)</span>
+<span class="n">users_clean</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">users_clean</span><span class="p">[</span><span class="s1">'country_id'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'Int64'</span><span class="p">)</span>
+<span class="n">users_clean</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">users_clean</span><span class="p">[</span><span class="s1">'group_id'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'Int64'</span><span class="p">)</span>
+<span class="n">users_clean</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">=</span> <span class="n">users_clean</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'Int64'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=8dd70cf4-c85c-4533-a20a-46d7640dd80c">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users_clean</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=6f26f4a5-0f5b-4f8b-8d98-44685bc4ba13">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span> <span class="o">=</span> <span class="n">daily_clean</span><span class="p">[</span><span class="s1">'converted'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'Int64'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=87914b8c-0d87-47d9-86ba-c3aee8c66150">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">daily_clean</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=38bdc725"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Висновок: типи даних приведено до коректного формату. ID-поля, days_on_product та converted зберігаються як цілі числа з підтримкою пропущених значень, а date — у форматі дати.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-4"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="export">4. Підсумкова перевірка та експорт</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2fa14cbd-509e-4cde-b6c7-334df52ad9fb">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">users_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">users_clean</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">((</span><span class="n">users_clean</span><span class="p">[</span><span class="s1">'days_on_product'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily_clean</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(10000, 5)
+(59746, 3)
+0
+0
+0
+2025-08-01 00:00:00
+2025-08-20 00:00:00
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=20100ae8-d47c-40cd-a539-51fb9e4b355f"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Очищення завершено. Повні дублікати та некоректні негативні значення відсутні, а daily_clean містить лише записи за період A/B тесту — 1–20 серпня 2025 року. Пропуски, які неможливо достовірно відновити, залишено без штучного заповнення.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1e0ba6cd-829d-4166-bab2-82ffe11db6ea"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="cleaning-summary">Підсумок очищення</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p><table>
+<thead>
+<tr>
+<th>Дані / проблема</th>
+<th>Виконана дія</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>daily</code>: 61 002 початкові записи</td>
+<td>Видалено 1 196 повних дублікатів</td>
+<td>59 806 записів</td>
+</tr>
+<tr>
+<td>Записи поза періодом тесту</td>
+<td>Після дедуплікації видалено 60 записів поза 01–20.08.2025</td>
+<td>59 746 записів</td>
+</tr>
+<tr>
+<td><code>days_on_product</code>: 20 негативних значень</td>
+<td>Замінено на пропуски, користувачів збережено</td>
+<td>Негативних значень немає; 10 000 користувачів</td>
+</tr>
+<tr>
+<td>Пропуски <code>converted</code></td>
+<td>Збережено як невідомі значення</td>
+<td>501 пропуск у щоденних записах</td>
+</tr>
+<tr>
+<td>Пропуски ідентифікаторів і категорій</td>
+<td>Збережено без штучного заповнення</td>
+<td>54 користувачі без групи не входять до A/B-порівняння</td>
+</tr>
+</tbody>
+</table>
+<p>У початкових даних було 62 записи поза періодом; після видалення повних дублікатів залишилося 60 таких записів. Це різні етапи очищення, тому кількості відрізняються.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-4-1"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="section-4-1">4.1. Експорт очищених таблиць</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=2730c29a-7702-4d4a-b9d3-54610d9b4fad">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">output_dir</span> <span class="o">=</span> <span class="s1">'SkillForge_clean'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered no-output" id="cell-id=0a44c1b3-df45-404a-b40c-444f5b3c05aa">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">device</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/device.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">country</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/country.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/experiment_group.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">users_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/users.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">daily_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/daily.csv'</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">date_format</span><span class="o">=</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=c9b499ef-f235-463c-8d42-cdb4eda3a3aa"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Результат:</strong> п’ять очищених CSV збережено в <code>SkillForge_clean</code>.</p>
+</div>
+</div>
+</div>
+<footer class="report-footer"><a href="index.html">Далі: A/B-аналіз →</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
+const bar=document.querySelector('.toolbar');
+const resize=()=>document.documentElement.style.setProperty('--toolbar-h',bar.getBoundingClientRect().height+'px');
+resize();if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(bar);else addEventListener('resize',resize);
+const button=document.getElementById('code-toggle');
+document.body.classList.add('code-hidden');button.hidden=false;
+button.addEventListener('click',()=>{const hidden=document.body.classList.toggle('code-hidden');button.textContent=hidden?'Показати код':'Приховати код';button.setAttribute('aria-pressed',String(!hidden));});
+}());</script></body></html>
