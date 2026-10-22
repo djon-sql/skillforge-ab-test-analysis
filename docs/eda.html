@@ -122,7 +122,7 @@ main{margin-top:24px}
 </div>
 </div>
 </div>
-<nav aria-labelledby="project-navigation-title" class="project-navigation" id="project-navigation"><h2 id="project-navigation-title">Навігація проєктом</h2><div class="project-links"><a aria-current="page" data-stage="eda" href="eda.html">1. Очищення даних</a><a data-stage="sql" href="index.html#sql">2. SQL: таблиці та view</a><a data-stage="ab" href="index.html">3. A/B-аналіз</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a></div><div class="panel-tools"><a href="#report-contents">Зміст цього звіту</a><button aria-pressed="false" hidden="" id="code-toggle" type="button">Показати Python-код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb">Ноутбук на GitHub ↗</a></div></nav><nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#context">Опис проєкту</a></div><div class="toc-group"><a class="toc-main" href="#load-data">1. Завантаження даних</a></div><div class="toc-group"><a class="toc-main" href="#initial-review">2. Первинний огляд даних</a></div><div class="toc-group"><a class="toc-main" href="#data-quality">3. Перевірка якості та очищення даних</a><details><summary>Підрозділи (7)</summary><ul><li><a href="#section-3-1">3.1. Перевірка довідників</a></li><li><a href="#section-3-2">3.2. Якість даних користувачів</a></li><li><a href="#section-3-3">3.3. Якість щоденних записів</a></li><li><a href="#section-3-4">3.4. Перевірка зв’язків між таблицями</a></li><li><a href="#section-3-5">3.5. Очищення даних</a></li><li><a href="#section-3-6">3.6. Невідомі статуси конверсії</a></li><li><a href="#section-3-7">3.7. Приведення типів даних</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#export">4. Підсумкова перевірка та експорт</a><details><summary>Підрозділи (2)</summary><ul><li><a href="#cleaning-summary">Підсумок очищення</a></li><li><a href="#section-4-1">4.1. Експорт очищених таблиць</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-overview"><div class="inner_cell">
+<nav aria-labelledby="project-navigation-title" class="project-navigation" id="project-navigation"><h2 id="project-navigation-title">Навігація проєктом</h2><div class="project-links"><a aria-current="page" data-stage="eda" href="eda.html">1. Очищення даних</a><a data-stage="sql" href="eda.html#sql">2. SQL: таблиці та view</a><a data-stage="ab" href="index.html">3. A/B-аналіз</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a></div><div class="panel-tools"><a href="#report-contents">Зміст цього звіту</a><button aria-pressed="false" hidden="" id="code-toggle" type="button">Показати Python-код</button><a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/notebooks/SkillForge_Kupriyanov_eda_cleaning.ipynb">Ноутбук на GitHub ↗</a></div></nav><nav aria-label="Зміст звіту" class="report-toc" id="report-contents"><details open=""><summary>Зміст звіту</summary><div class="toc-grid"><div class="toc-group"><a class="toc-main" href="#context">Опис проєкту</a></div><div class="toc-group"><a class="toc-main" href="#load-data">1. Завантаження даних</a></div><div class="toc-group"><a class="toc-main" href="#initial-review">2. Первинний огляд даних</a></div><div class="toc-group"><a class="toc-main" href="#data-quality">3. Перевірка якості та очищення даних</a><details><summary>Підрозділи (7)</summary><ul><li><a href="#section-3-1">3.1. Перевірка довідників</a></li><li><a href="#section-3-2">3.2. Якість даних користувачів</a></li><li><a href="#section-3-3">3.3. Якість щоденних записів</a></li><li><a href="#section-3-4">3.4. Перевірка зв’язків між таблицями</a></li><li><a href="#section-3-5">3.5. Очищення даних</a></li><li><a href="#section-3-6">3.6. Невідомі статуси конверсії</a></li><li><a href="#section-3-7">3.7. Приведення типів даних</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#export">4. Підсумкова перевірка та експорт</a><details><summary>Підрозділи (2)</summary><ul><li><a href="#cleaning-summary">Підсумок очищення</a></li><li><a href="#section-4-1">4.1. Експорт очищених таблиць</a></li></ul></details></div><div class="toc-group"><a class="toc-main" href="#sql">5. SQL: таблиці та аналітичні view</a><details><summary>Підрозділи (3)</summary><ul><li><a href="#sql-schema">5.1. Таблиці та обмеження</a></li><li><a href="#sql-daily">5.2. Щоденна агрегація — v_daily_agg</a></li><li><a href="#sql-users">5.3. Підсумковий статус користувача — v_user_conversion</a></li></ul></details></div></div></details></nav><div class="cell border-box-sizing text_cell rendered" id="cell-id=sf-eda-section-overview"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="context">Опис проєкту</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Мета проєкту — проаналізувати результати A/B тесту нової функції
 "Миттєве занурення" у SkillForge та перевірити, чи підвищує вона
@@ -1781,10 +1781,135 @@ Name: count, dtype: int64</pre>
 </div>
 </div>
 </div>
-<footer class="report-footer"><a href="index.html">Далі: A/B-аналіз →</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a><a href="#project-navigation">До панелі навігації ↑</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
+<section class="sql-section"><h2 id="sql">5. SQL: таблиці та аналітичні view</h2><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><p>Після очищення даних створюємо таблиці та аналітичні view у PostgreSQL для A/B-аналізу.</p><p>Авторський код із файлу <code>SkillForge_sql(1).sql</code>: створення таблиць, ключів, обмежень та двох view. <a href="https://github.com/djon-sql/skillforge-ab-test-analysis/blob/main/sql/01_schema_and_views.sql">Переглянути SQL-файл на GitHub ↗</a></p><nav aria-label="Розділи SQL" class="sql-shortcuts"><a href="#sql-schema">Таблиці та обмеження</a><a href="#sql-daily">Щоденна агрегація — v_daily_agg</a><a href="#sql-users">Підсумковий статус користувача — v_user_conversion</a></nav><h3 id="sql-schema">5.1. Таблиці та обмеження</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><div class="sql-code"><div class="highlight"><pre><span></span><span class="c1">--Ствоення таблиць та структури таблиць </span>
+
+
+
+<span class="c1">-- Довідник типів пристроїв користувачів</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">device</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">device_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">device_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+
+<span class="p">);</span>
+
+<span class="c1">-- Довідник країн користувачів</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">country_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">country_code</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+
+<span class="p">);</span>
+
+<span class="c1">-- Довідник груп A/B тесту:</span>
+<span class="c1">-- A — контрольна група, B — тестова група</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">experiment_group</span><span class="w"> </span><span class="p">(</span><span class="w"> </span>
+
+<span class="n">group_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">group_label</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">group_label</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'A'</span><span class="p">,</span><span class="w"> </span><span class="s1">'B'</span><span class="p">))</span>
+
+<span class="p">);</span>
+
+
+<span class="c1">-- Основна таблиця користувачів.</span>
+<span class="c1">-- Зберігає пристрій, країну, групу A/B тесту та кількість днів користування продуктом.</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">user_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="n">device_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="n">country_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="n">group_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="n">days_on_product</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">days_on_product</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">device</span><span class="p">(</span><span class="n">device_id</span><span class="p">),</span>
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">country_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">country</span><span class="p">(</span><span class="n">country_id</span><span class="p">),</span>
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">experiment_group</span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span>
+
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="p">(</span>
+
+<span class="n">user_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="nb">date</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">converted</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">converted</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)),</span>
+
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="p">),</span>
+<span class="w">  </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+<span class="p">);</span>
+
+
+<span class="c1">-- Щоденні записи активності користувачів у межах A/B тесту.</span>
+<span class="c1">-- converted: 1 — конверсія відбулася, 0 — не відбулася, NULL — статус конверсії невідомий.</span>
+
+</pre></div>
+</div><h3 id="sql-daily">5.2. Щоденна агрегація — v_daily_agg</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><div class="sql-code"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v_daily_agg</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_users</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_conversions</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_unknown_convert</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cnt_known</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ROUND</span><span class="p">((</span><span class="k">SUM</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">converted</span><span class="p">)::</span><span class="nb">NUMERIC</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">conver_rate</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">u</span><span class="w"> </span>
+<span class="w">   </span><span class="k">JOIN</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">d</span><span class="w"> </span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span>
+<span class="w">   </span><span class="k">JOIN</span><span class="w"> </span><span class="n">experiment_group</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">eg</span><span class="w"> </span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">group_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eg</span><span class="p">.</span><span class="n">group_id</span><span class="w"> </span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="nb">date</span><span class="p">,</span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">;</span>
+
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">v_daily_agg</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"> </span><span class="n">group_label</span><span class="p">;</span>
+
+<span class="c1">--Денна агрегація показує кількість користувачів, підтверджених конверсій, невідомих статусів та conversion rate окремо для груп A і B за кожен день тесту.</span>
+
+</pre></div>
+</div><h3 id="sql-users">5.3. Підсумковий статус користувача — v_user_conversion</h3><p class="back-to-contents"><a href="#report-contents">↑ До змісту</a><a href="#project-navigation">До панелі навігації</a></p><div class="sql-code"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">v_user_conversion</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">device_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">country_code</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">days_on_product</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CASE</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">da</span><span class="p">.</span><span class="n">converted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">da</span><span class="p">.</span><span class="n">converted</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="k">THEN</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">        </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">conversion_status</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">u</span>
+<span class="w">   </span><span class="k">JOIN</span><span class="w"> </span><span class="n">experiment_group</span><span class="w"> </span><span class="n">eg</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">group_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eg</span><span class="p">.</span><span class="n">group_id</span>
+<span class="w">   </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="n">d</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">device_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">device_id</span>
+<span class="w">   </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">c</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">country_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">country_id</span>
+<span class="w">   </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">daily</span><span class="w"> </span><span class="n">da</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">da</span><span class="p">.</span><span class="n">user_id</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eg</span><span class="p">.</span><span class="n">group_label</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">device_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">country_code</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">days_on_product</span><span class="p">;</span>
+
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">v_user_conversion</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">user_id</span><span class="p">;</span>
+
+<span class="c1">--v_user_conversion формує один підсумковий запис на кожного користувача та визначає його статус конверсії за весь період тесту. </span>
+<span class="c1">--View буде використана для основного A/B аналізу та сегментації користувачів.</span>
+</pre></div>
+</div></section><footer class="report-footer"><a href="index.html">Далі: A/B-аналіз →</a><a class="readme-link" href="https://github.com/djon-sql/skillforge-ab-test-analysis">← README на GitHub</a><a href="#project-navigation">До панелі навігації ↑</a><a href="#report-contents">До змісту ↑</a></footer><p class="scope-note">Код і збережені узагальнені результати з авторського ноутбука та окремий SQL-скрипт. Приклади індивідуальних записів не публікуються.</p></main><script>(function(){
 const button=document.getElementById('code-toggle');
 document.body.classList.add('code-hidden');button.hidden=false;
 button.addEventListener('click',()=>{const hidden=document.body.classList.toggle('code-hidden');button.textContent=hidden?'Показати Python-код':'Приховати Python-код';button.setAttribute('aria-pressed',String(!hidden));});
-const updateActive=()=>{const report=document.body.dataset.report;const active=report==='ab'&&location.hash.startsWith('#sql')?'sql':report;document.querySelectorAll('.project-links a[data-stage]').forEach(a=>{if(a.dataset.stage===active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});};
+const sqlAnchors=['#sql','#sql-schema','#sql-daily','#sql-users'];
+const updateActive=()=>{const report=document.body.dataset.report;if(report==='ab'&&sqlAnchors.includes(location.hash)){location.replace('eda.html'+location.hash);return;}const active=report==='eda'&&sqlAnchors.includes(location.hash)?'sql':report;document.querySelectorAll('.project-links a[data-stage]').forEach(a=>{if(a.dataset.stage===active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});};
 updateActive();addEventListener('hashchange',updateActive);
 }());</script></body></html>
